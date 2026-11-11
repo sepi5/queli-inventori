@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#6d28d9"><title>کوئلی شاپ | مدیریت موجودی کفش</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
+:root{--bg:#f3f5f9;--card:#fff;--ink:#182230;--muted:#667085;--line:#e4e7ec;--primary:#2563eb;--green:#087443;--red:#b42318}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Tahoma,"Segoe UI",sans-serif;font-size:14px}header{background:#111827;color:white;padding:22px 16px 20px;border-radius:0 0 22px 22px}header h1{margin:0 0 6px;font-size:23px}header p{margin:0;color:#cbd5e1;font-size:12px}.wrap{max-width:760px;margin:auto;padding:14px}.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:-2px}.stat,.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}.stat span{display:block;color:var(--muted);font-size:12px;margin-bottom:8px}.stat strong{font-size:25px}.panel{margin-top:12px}.panel h2{font-size:16px;margin:0 0 12px}.tabs{display:flex;gap:8px;margin-top:12px}.tab{flex:1;border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px 5px;font:inherit;font-weight:bold}.tab.active{background:var(--primary);color:white;border-color:var(--primary)}label{display:block;color:#344054;font-size:12px;margin:11px 0 6px}input,select{width:100%;border:1px solid #d0d5dd;border-radius:10px;padding:12px;font:inherit;background:white;min-height:43px}input:focus,select:focus{outline:2px solid #bfdbfe;border-color:var(--primary)}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.btn{border:0;border-radius:10px;padding:12px 14px;font:inherit;font-weight:bold;background:var(--primary);color:white;cursor:pointer;min-height:44px}.btn.secondary{background:#eef2ff;color:#1d4ed8}.btn.dark{background:#344054}.btn.danger{background:#dc2626;color:#fff;border:1px solid #dc2626}.btn.danger:active{background:#b91c1c}.btnrow{display:flex;gap:8px;margin-top:12px}.btnrow>*{flex:1}.hint{color:var(--muted);font-size:12px;line-height:1.8}.notice{padding:10px;border-radius:10px;background:#eff8ff;color:#175cd3;margin-top:10px;line-height:1.7}.hidden{display:none!important}.searchrow{display:flex;gap:8px}.searchrow input{flex:1}.list{display:grid;gap:8px;margin-top:12px}.item{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}.itemtop{display:flex;justify-content:space-between;gap:8px;align-items:start}.itemname{font-weight:bold;font-size:14px}.sub{color:var(--muted);font-size:12px;margin-top:6px;line-height:1.8}.qty{font-weight:bold;background:#ecfdf3;color:#067647;border-radius:9px;padding:7px 9px;white-space:nowrap}.smallactions{display:flex;gap:6px;margin-top:10px}.smallactions button{padding:7px 10px;min-height:34px;font-size:12px}.empty{text-align:center;color:var(--muted);padding:24px 8px}.scanbox{border:1px dashed #98a2b3;border-radius:12px;padding:12px;text-align:center}.video-frame{position:relative;width:100%;margin-top:8px;line-height:0}.scanbox .video-frame video{display:block;width:100%;max-height:310px;object-fit:contain;border-radius:10px;background:#101828;margin:0}.label-guide{position:absolute;left:27.2%;top:33.2%;width:45.6%;height:33.6%;border:3px solid #ef4444;border-radius:8px;box-shadow:0 0 0 9999px rgba(0,0,0,.16);pointer-events:none}.label-guide:after{content:"فقط لیبل را داخل کادر قرمز بگیر";position:absolute;top:-27px;left:0;right:0;text-align:center;color:#ef4444;font-weight:bold;font-size:12px;line-height:1.4;text-shadow:0 1px 2px white}.scanstate{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:8px;font-weight:bold;color:#067647}.scanstate:before{content:"";width:8px;height:8px;border-radius:50%;background:#12b76a;display:inline-block}.scanstate.off{color:var(--muted)}.scanstate.off:before{background:#98a2b3}.footer{padding:20px 4px;text-align:center;color:var(--muted);font-size:11px;line-height:1.8}#toast{position:fixed;bottom:18px;left:14px;right:14px;max-width:500px;margin:auto;background:#101828;color:#fff;border-radius:12px;padding:13px 15px;box-shadow:0 8px 30px #0002;z-index:5;display:none}.badge{font-size:11px;border-radius:20px;background:#f2f4f7;padding:4px 8px;color:#475467}
+
+/* Modern visual refresh */
+:root{
+ --bg:#f3f6fc;--card:#ffffff;--ink:#17233b;--muted:#71809b;--line:#e4eaf4;
+ --primary:#2563eb;--green:#059669;--red:#e53945;
+}
+body{
+ background:radial-gradient(ellipse at 8% 0%,#dceaff 0,transparent 35%),
+            radial-gradient(ellipse at 100% 8%,#e5e7ff 0,transparent 28%),var(--bg);
+ color:var(--ink);font-size:14px;line-height:1.65;
+}
+header{
+ background:linear-gradient(125deg,#101d39 0%,#17396c 58%,#2458a7 100%);
+ padding:25px 18px 24px;border-radius:0 0 26px 26px;
+ box-shadow:0 14px 35px #17396c24;position:relative;overflow:hidden;
+}
+header:after{content:"";position:absolute;width:180px;height:180px;border:1px solid #ffffff20;border-radius:50%;left:-55px;top:-80px;box-shadow:0 0 0 22px #ffffff08,0 0 0 44px #ffffff06}
+header h1{font-size:25px;letter-spacing:-.4px;position:relative;z-index:1}
+header p{font-size:13px;color:#d5e4ff;position:relative;z-index:1}
+.wrap{max-width:900px;padding:16px 14px 28px}
+.stats{gap:12px;margin-top:14px}
+.stat,.panel{
+ border:1px solid #e6ecf5;border-radius:19px;padding:16px;
+ box-shadow:0 8px 24px #203a6610;transition:transform .18s ease,box-shadow .18s ease;
+}
+.stat{background:linear-gradient(145deg,#fff,#f8faff)}
+.stat strong{font-size:28px;letter-spacing:-.5px;color:#1d3d73}
+.stat span{font-size:12px;font-weight:600}
+.panel{margin-top:14px}
+.panel h2{font-size:17px;font-weight:800;letter-spacing:-.2px}
+.tabs{
+ position:sticky;top:8px;z-index:10;background:#ffffffd9;backdrop-filter:blur(14px);
+ border:1px solid #e4eaf4;padding:6px;border-radius:16px;gap:6px;
+ box-shadow:0 8px 24px #203a660d;
+}
+.tab{border:0;background:transparent;border-radius:11px;padding:12px 7px;font-size:13px;transition:all .18s ease}
+.tab.active{background:linear-gradient(135deg,#2563eb,#3988ff);box-shadow:0 5px 14px #2563eb38;color:white}
+button,.btn{transition:transform .15s ease,box-shadow .15s ease,filter .15s ease}
+button:active,.btn:active{transform:scale(.98)}
+.btn{border-radius:12px;box-shadow:0 3px 8px #14264a0b;font-size:13px}
+.btn:not(.secondary):not(.danger){background:linear-gradient(135deg,#2563eb,#3987ff)}
+.btn.secondary{background:#edf4ff;color:#1d55b5;border:1px solid #dbeafe}
+.btn.danger{background:linear-gradient(135deg,#e53945,#ff5964);color:#fff;border:0;box-shadow:0 5px 13px #e539452b}
+input,select{border-radius:12px;border-color:#dbe3ef;background:#fbfcff;transition:border-color .15s,box-shadow .15s}
+input:focus,select:focus{outline:0;border-color:#5b91f5;box-shadow:0 0 0 4px #2563eb17}
+.scanbox{border:1px dashed #8eafe7;background:linear-gradient(145deg,#f5f9ff,#fff);border-radius:17px;padding:13px}
+.scanbox video{max-height:310px;border:1px solid #dce6f5;box-shadow:0 8px 20px #14264a14}
+.scanstate{font-size:13px}
+.notice{border:1px solid #dbeafe;border-radius:12px;background:#eff6ff;color:#234b87;font-size:12px}
+.list{gap:10px}
+.item{border:1px solid #e4eaf4;border-radius:15px;padding:14px;box-shadow:0 4px 12px #14264a07;transition:transform .16s,box-shadow .16s}
+.item:active{transform:scale(.995)}
+.model-group{border:1px solid #d9c9ef;border-radius:15px;background:#fff;overflow:hidden;box-shadow:0 4px 12px #14264a07}.model-group-head{display:flex;align-items:center;gap:10px;width:100%;border:0;background:linear-gradient(135deg,#faf7ff,#f2eaff);padding:14px;text-align:right;color:#4c1d75;font:inherit;cursor:pointer;min-height:62px}.model-arrow{display:inline-flex;align-items:center;justify-content:center;flex:0 0 30px;width:30px;height:30px;border-radius:9px;background:#e9d5ff;color:#6b21a8;font-size:20px;font-weight:bold;transition:transform .15s}.model-arrow.open{transform:rotate(90deg)}.model-group-title{font-weight:bold;flex:1}.model-group-count{font-size:12px;color:#6b21a8;background:#fff;border:1px solid #e9d5ff;border-radius:20px;padding:5px 8px;white-space:nowrap}.model-variants{display:grid;gap:8px;padding:10px}.model-variants .item{box-shadow:none}
+
+.itemname{font-size:14px;color:#192f54}
+.qty{background:#e8fbf2;color:#087443;border:1px solid #c8f3df;border-radius:10px}
+.smallactions{gap:8px;flex-wrap:wrap}
+.smallactions .btn{min-width:64px}
+.empty{background:#f8faff;border:1px dashed #d7e1f1;border-radius:14px}
+.footer{font-size:12px}
+#toast{border:1px solid #ffffff1c;box-shadow:0 12px 35px #07152e38;border-radius:14px}
+@media(min-width:700px){
+ .stats{grid-template-columns:repeat(4,1fr)}
+ .stat,.panel{padding:18px}
+ .tabs{top:10px}
+}
+@media(max-width:520px){
+ header{padding:21px 15px 20px}
+ header h1{font-size:22px}
+ .wrap{padding:12px 10px 22px}
+ .stats{gap:8px}
+ .stat{padding:12px;border-radius:15px}
+ .stat strong{font-size:23px}
+ .panel{padding:13px;border-radius:16px}
+ .tabs{gap:3px;padding:4px}
+ .tab{font-size:11px;padding:10px 3px}
+ .btnrow{gap:7px}
+ .btn{padding:11px 9px}
+ .grid2{gap:8px}
+}
+
+
+.request-subtabs{display:flex;gap:8px;margin:12px 0 16px;padding:5px;background:#f1f5fb;border:1px solid #e1e8f3;border-radius:13px}.request-subtab{flex:1;border:1px solid transparent;border-radius:10px;padding:11px 8px;background:transparent;color:#334155;font:inherit;font-size:13px;font-weight:bold;cursor:pointer}.request-subtab.active{background:#fff;color:#1d4ed8;border-color:#d8e5fb;box-shadow:0 3px 10px #203a660c}.role-seller .request-subtabs{display:none!important}
+/* Seller sales league */
+.league-hero{padding:20px;border-radius:20px;background:radial-gradient(circle at 12% 15%,#ffffff30,transparent 35%),linear-gradient(135deg,#21104a,#5526a8 55%,#2563eb);color:#fff;box-shadow:0 14px 32px #3920802b;overflow:hidden;position:relative}
+.league-kicker{font-size:10px;letter-spacing:2px;font-weight:900;color:#e9ddff}
+.league-hero h2{font-size:23px;margin:5px 0 7px;color:white}
+.league-hero p{font-size:12px;line-height:1.9;color:#eee7ff;margin:0}
+.league-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:18px}
+.league-summary>div{padding:10px 8px;border-radius:13px;background:#ffffff18;border:1px solid #ffffff2b;min-width:0}
+.league-summary span{display:block;font-size:10px;color:#e5ddff;line-height:1.7}
+.league-summary strong{display:block;font-size:22px;margin-top:3px;color:#fff;overflow-wrap:anywhere}
+.league-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:18px}
+.league-head h2{margin:0;font-size:16px}
+.league-list{display:grid;gap:10px;margin-top:12px}
+.league-card{display:flex;align-items:center;gap:12px;padding:13px;border:1px solid #e5e7eb;border-radius:16px;background:linear-gradient(135deg,#fff,#f8faff);box-shadow:0 5px 15px #1e293b08}
+.league-card.me{border:2px solid #8b5cf6;background:linear-gradient(120deg,#f5f0ff,#fff)}
+.league-rank{width:46px;height:46px;flex:0 0 46px;display:grid;place-items:center;border-radius:15px;background:#edf2f7;font-size:22px;font-weight:900;color:#334155}
+.league-card.rank-1 .league-rank{background:linear-gradient(135deg,#fff0a6,#f5bd32);box-shadow:0 5px 14px #eab30835}
+.league-card.rank-2 .league-rank{background:linear-gradient(135deg,#f8fafc,#b8c4d4);box-shadow:0 5px 14px #64748b25}
+.league-card.rank-3 .league-rank{background:linear-gradient(135deg,#ffdfc6,#d98b59);box-shadow:0 5px 14px #b4530930}
+.league-person{min-width:0;flex:1}
+.league-name{font-weight:900;font-size:14px;overflow-wrap:anywhere}
+.league-sub{font-size:11px;color:#718096;margin-top:3px}
+.league-stats{text-align:left;white-space:nowrap}
+.league-pairs{font-weight:900;font-size:19px;color:#243f78}
+.league-pairs-label{font-size:10px;color:#718096}
+.league-medal{font-size:11px;font-weight:900;padding:3px 8px;border-radius:30px;background:#f3e8ff;color:#6d28d9;display:inline-block;margin-top:5px}
+.league-foot{font-size:11px;color:#718096;text-align:center;line-height:1.9;padding:12px 6px}
+@media(max-width:420px){.league-summary strong{font-size:18px}.league-card{gap:8px;padding:10px}.league-rank{width:40px;height:40px;flex-basis:40px}.league-pairs{font-size:17px}}
+/* Role-aware layout */
+.accountbar{position:fixed;z-index:99999;top:10px;left:10px;background:rgba(10,20,40,.92);color:#fff;padding:9px 13px;border:1px solid #ffffff24;border-radius:12px;font:12px Tahoma,sans-serif;box-shadow:0 8px 24px #10182825;backdrop-filter:blur(8px)}
+.accountbar a{color:#a9ddff;text-decoration:none;font-weight:bold}
+.upload-card{border:1px solid #d8e5fb;background:linear-gradient(145deg,#f3f7ff,#fff);border-radius:16px;padding:16px}
+.upload-card input[type=file]{background:#fff;border:1px dashed #8aaee9;padding:14px}
+.upload-btn{width:100%;margin-top:14px;background:linear-gradient(135deg,#1458d4,#438cff);box-shadow:0 7px 18px #2563eb26}
+.role-admin [data-tab="scan"],.role-admin [data-tab="manage"],.role-admin #tab-scan,.role-admin #tab-manage,.role-admin [data-tab="profile"],.role-admin #tab-profile{display:none!important}
+.role-seller [data-tab="scan"],.role-seller [data-tab="manage"],.role-seller [data-tab="outgoing"],.role-seller [data-tab="transfers"],.role-seller #tab-scan,.role-seller #tab-manage,.role-seller #tab-outgoing,.role-seller #tab-transfers{display:none!important}
+.role-seller #exportCsv,.role-seller #clearAll{display:none!important}
+.role-seller .searchfilters{display:block!important}
+.searchfilters .filterbar{display:grid;grid-template-columns:minmax(220px,2fr) repeat(3,minmax(110px,1fr));gap:10px;align-items:end}
+.searchfilters .filterbar>div{min-width:0}
+.searchfilters .filterbar label{margin-top:0}
+@media(max-width:620px){.searchfilters .filterbar{grid-template-columns:1fr 1fr}.searchfilters .search-main{grid-column:1/-1}}
+#tab-profile .profile-avatar{width:76px;height:76px;border-radius:24px;background:linear-gradient(135deg,#2563eb,#14b8a6);display:grid;place-items:center;color:white;font-size:34px;box-shadow:0 10px 25px #2563eb2e}
+#tab-profile .profile-row{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}#tab-profile .profile-row:last-child{border-bottom:0}
+#tab-profile .profile-label{color:var(--muted);font-size:12px}#tab-profile .profile-value{font-weight:800;overflow-wrap:anywhere}
+.role-seller [data-tab="upload"],.role-seller #tab-upload{display:none!important}
+.role-seller .smallactions{display:none!important}
+.role-admin .smallactions{display:none!important}
+.role-admin #clearAll,.role-seller #clearAll{display:none!important}
+.meta-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}.color-chip{display:inline-block;width:30px;height:22px;border-radius:7px;border:1px solid #64748b80;vertical-align:middle;box-shadow:inset 0 0 0 1px #ffffff66;margin:0 3px}.product-color-text{font-size:16px!important;font-weight:900;color:#111827;background:#fff7d6;border:1px solid #f2d16b;border-radius:9px;padding:5px 9px;display:inline-block;line-height:1.5}.product-color-label{font-weight:700;color:#475467;font-size:13px}
+.size-chip{display:inline-flex;align-items:center;justify-content:center;min-width:55px;padding:4px 9px;border-radius:7px;background:#e9efff;color:#214cba;border:1px solid #cbd9ff;font-size:12px;font-weight:900;white-space:nowrap}
+.size-chip.s-small{background:#fff4d6;color:#92400e;border-color:#f7d98a}.size-chip.s-mid{background:#e4f7ed;color:#067647;border-color:#a7e6c3}.size-chip.s-large{background:#fce7f3;color:#9d174d;border-color:#f9b9da}
+.role-admin .tabs{margin-top:18px}
+.role-seller .stats{display:none!important}
+.request-btn{background:linear-gradient(135deg,#0f766e,#14b8a6)!important;color:#fff!important;width:100%;margin-top:10px;padding:10px;border:0;border-radius:10px;font:inherit;font-weight:bold;cursor:pointer}
+#sellerRequestHistory .item{background:#ffffffd9}
+.role-admin [data-tab="requests"],.role-admin #tab-requests{display:block}
+.role-seller [data-tab="requests"]{display:block!important}
+.role-seller #adminRequestsPanel,.role-admin #sellerRequestsPanel,.role-admin #sellerProfileSales{display:none!important}
+.seller-profile-sales{background:linear-gradient(135deg,#eff6ff,#f0fdfa);border:1px solid #bfdbfe;border-radius:15px;padding:14px;margin:18px 0}
+.seller-profile-sales .sales-number{font-size:28px;font-weight:900;color:#0f766e}
+.request-actions{display:flex;gap:8px;margin-top:10px}.request-actions button{flex:1}
+.request-type-tag{display:inline-flex;align-items:center;border-radius:999px;padding:4px 10px;background:#f3e8ff;color:#6b21a8;border:1px solid #e9d5ff;font-size:12px;font-weight:800}.request-type-actions button{min-height:38px;padding:8px 12px}
+.status-pill{display:inline-block;padding:4px 9px;border-radius:99px;font-size:11px;font-weight:bold;background:#fef3c7;color:#92400e}.status-sold{background:#dcfce7;color:#166534}.status-kept{background:#e2e8f0;color:#334155}
+.request-card{border:1px solid #e2e8f0;border-radius:14px;background:#fff;padding:13px;margin:9px 0;box-shadow:0 3px 10px #0f172a08}
+@media(max-width:520px){.request-actions{flex-direction:column}}
+@media(max-width:520px){.accountbar{top:6px;left:6px;padding:7px 9px;font-size:11px}.size-chip{min-width:48px}}
+
+
+/* Qoeli Shop: Persian typography + signature purple theme */
+:root{--bg:#f7f4ff;--card:#fff;--ink:#241638;--muted:#7b6b91;--line:#e9dff7;--primary:#7c3aed;--green:#087443;--red:#c0265a}
+html,body,button,input,select,textarea{font-family:'Vazirmatn',Tahoma,'Segoe UI',sans-serif}
+body{background:radial-gradient(ellipse at 5% 0%,#eadcff 0,transparent 34%),radial-gradient(ellipse at 100% 10%,#f3e8ff 0,transparent 32%),var(--bg);color:var(--ink)}
+header{background:linear-gradient(125deg,#32105f 0%,#6421a8 53%,#8b5cf6 100%);box-shadow:0 14px 35px #6d28d926}
+header p{color:#f0e5ff}
+.stat,.panel{border-color:#eadff7;box-shadow:0 8px 24px #4c1d9510}
+.stat{background:linear-gradient(145deg,#fff,#fcfaff)}
+.stat strong{color:#6d28d9}
+.tabs{border-color:#eadff7;background:#ffffffdf;box-shadow:0 8px 24px #4c1d9510}
+.tab.active{background:linear-gradient(135deg,#6d28d9,#a855f7);box-shadow:0 5px 14px #7c3aed3b}
+.btn:not(.secondary):not(.danger){background:linear-gradient(135deg,#6d28d9,#9333ea)}
+.btn.secondary{background:#f3e8ff;color:#6b21a8;border:1px solid #e9d5ff}
+input,select{border-color:#e4d7f3;background:#fdfbff}
+input:focus,select:focus{border-color:#a78bfa;box-shadow:0 0 0 4px #7c3aed18}
+.notice{border-color:#e9d5ff;background:#faf5ff;color:#6b21a8}
+.scanbox{border-color:#c4a5f5;background:linear-gradient(145deg,#faf5ff,#fff)}
+.item{border-color:#eadff7}
+.itemname{color:#4c1d75}
+.empty{background:#fcfaff;border-color:#e4d4f7}
+.accountbar{background:rgba(49,16,95,.94)}
+@media(prefers-reduced-motion:no-preference){.stat:hover,.panel:hover{box-shadow:0 12px 28px #4c1d9518}}
+
+
+/* جلوگیری از زوم خودکار موبایل هنگام فوکوس روی فیلدها */
+input, select, textarea, button { font-size: 16px !important; }
+input[type="checkbox"], input[type="radio"] { font-size: initial !important; }
+
+/* فونت یکسان وزیرمتن در تمام اجزای سایت؛ فقط ظاهر، بدون تغییر عملکرد */
+html, body, body *, body *::before, body *::after, input, button, select, textarea, option { font-family: 'Vazirmatn', Tahoma, 'Segoe UI', sans-serif !important; }
+
+/* Strict role isolation: render only the tabs and request panel for the signed-in role. */
+body.role-admin [data-tab="profile"],
+body.role-admin [data-tab="scan"],
+body.role-admin [data-tab="manage"],
+body.role-admin #tab-profile,
+body.role-admin #tab-scan,
+body.role-admin #tab-manage,
+body.role-admin #sellerRequestsPanel,
+body.role-admin #sellerProfileSales { display:none !important; }
+body.role-seller [data-tab="upload"],
+body.role-seller [data-tab="scan"],
+body.role-seller [data-tab="manage"],
+body.role-seller [data-tab="outgoing"],
+body.role-seller [data-tab="transfers"],
+body.role-seller #tab-upload,
+body.role-seller #tab-scan,
+body.role-seller #tab-manage,
+body.role-seller #tab-outgoing,
+body.role-seller #tab-transfers,
+body.role-seller #adminRequestsPanel { display:none !important; }
+
+/* Admin hamburger navigation */
+.admin-nav{display:none;position:relative;margin:12px 0}.role-admin .admin-nav{display:flex;justify-content:flex-start}.role-admin .tabs{display:flex;gap:8px;flex-wrap:wrap}.role-admin .tabs .tab[data-tab="profile"],.role-admin .tabs .tab[data-tab="scan"],.role-admin .tabs .tab[data-tab="manage"],.role-admin .tabs .tab[data-tab="upload"],.role-admin .tabs .tab[data-tab="outgoing"],.role-admin .tabs .tab[data-tab="transfers"]{display:none!important}.hamburger-btn{display:flex;align-items:center;gap:9px;border:1px solid #e4d7f3;background:#fff;color:#4c1d75;border-radius:13px;padding:11px 15px;font-weight:800;box-shadow:0 5px 15px #4c1d9510}.hamburger-lines{font-size:22px;line-height:1}.hamburger-menu{display:none;position:absolute;top:calc(100% + 8px);right:0;z-index:1000;width:min(300px,90vw);padding:10px;background:#fff;border:1px solid #e9dff7;border-radius:16px;box-shadow:0 18px 40px #24163825}.hamburger-menu.open{display:grid;gap:6px}.hamburger-menu button{width:100%;text-align:right;background:#faf7ff;color:#4c1d75;border:1px solid transparent;border-radius:10px;padding:12px;font:inherit;font-weight:700}.hamburger-menu button:hover{background:#f0e7ff;border-color:#d8b4fe}.seller-list-card{display:flex;align-items:center;justify-content:space-between;gap:12px}.seller-profile-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.seller-profile-head .back-sellers{background:#64748b}.seller-sales-row{padding:12px;border:1px solid #e9dff7;border-radius:12px;margin:8px 0;background:#fff}
+</style><link rel="manifest" href="/manifest.json"><link rel="icon" type="image/png" sizes="192x192" href="/static/queli-icon-192.png"><link rel="apple-touch-icon" href="/static/queli-icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="کوئلی شاپ"></head>
+<body><div id="pwaInstallBar" style="display:none;position:sticky;top:0;z-index:9999;background:#6d28d9;color:#fff;padding:9px 12px;text-align:center;font-family:Tahoma;box-shadow:0 2px 8px #0002"><span id="pwaInstallText">کوئلی شاپ را روی گوشی نصب کن</span> <button id="pwaInstallBtn" type="button" style="border:0;border-radius:8px;padding:7px 12px;margin:0 5px;font-weight:bold">نصب وب‌اپ</button><button id="pwaInstallClose" type="button" aria-label="بستن" style="border:0;background:transparent;color:white;font-size:18px">×</button></div>
+<header><h1>👟 کوئلی شاپ</h1><p>مدیریت هوشمند موجودی کفش · اسکن سریع · گزارش خروج کالا</p></header>
+<main class="wrap">
+<div class="stats"><div class="stat"><span>تعداد جفت موجود</span><strong id="totalPairs">۰</strong></div><div class="stat"><span>مدل/ترکیب‌های ثبت‌شده</span><strong id="totalSkus">۰</strong></div></div>
+<div class="admin-nav"><button type="button" class="hamburger-btn" id="adminHamburger"><span class="hamburger-lines">☰</span> منوی مدیریت</button><div class="hamburger-menu" id="adminHamburgerMenu"><button type="button" data-admin-menu-tab="upload">📥 ورودی کالا</button><button type="button" data-admin-menu-tab="manage">✍️ ثبت دستی</button><button type="button" data-admin-menu-tab="outgoing">📤 خروجی‌ها</button><button type="button" data-admin-menu-tab="transfers">📊 گزارش</button><button type="button" id="openSellersMenu">👥 فروشنده‌ها</button><a class="link" href="/admin" style="display:block;text-align:center">⚙️ مدیریت حساب‌ها</a></div></div><div class="tabs"><button class="tab" data-tab="profile">👤 پروفایل من</button><button class="tab" data-tab="requests">📨 درخواست‌ها</button><button class="tab" data-tab="league">🏆 لیگ فروش</button><button class="tab active" data-tab="search">جستجو</button><button class="tab" data-tab="scan">اسکن و ثبت</button><button class="tab" data-tab="upload">ورودی</button><button class="tab" data-tab="manage">ثبت دستی</button><button class="tab" data-tab="outgoing">خروجی‌ها</button><button class="tab" data-tab="transfers">گزارش</button></div>
+<section class="panel hidden" id="tab-league">
+ <div class="league-hero">
+  <div class="league-kicker">QUELI SHOP · SALES LEAGUE</div>
+  <h2>🏆 لیگ قهرمانان فروش</h2>
+  <p>هر جفتی که فروش نهایی و خروجش توسط مدیر تأیید شود، برای فروشنده امتیاز می‌آورد. رقابت کن و به صدر جدول برس!</p>
+  <div class="league-summary"><div><span>رتبه شما</span><strong id="leagueMyRank">—</strong></div><div><span>جفت‌های فروخته‌شده شما</span><strong id="leagueMyPairs">۰</strong></div><div><span>تعداد فروش شما</span><strong id="leagueMySales">۰</strong></div></div>
+ </div>
+ <div id="leagueAdminControls" class="panel" style="display:none;border:1px solid #d8b4fe;background:linear-gradient(135deg,#faf5ff,#fff)">
+  <h2>⚙️ مدیریت دوره لیگ</h2>
+  <p class="hint">تاریخ شروع را شمسی وارد کن. با زدن «استارت لیگ»، آمار رقابت از آن تاریخ محاسبه می‌شود و فروش‌های قبل از آن در امتیاز لیگ حساب نمی‌شوند؛ سوابق فروش پاک نمی‌شوند.</p>
+  <label for="leagueStartDate">تاریخ شروع لیگ (شمسی)</label>
+  <input id="leagueStartDate" type="text" inputmode="numeric" placeholder="مثلاً ۱۴۰۵/۰۸/۱۰" autocomplete="off" style="max-width:320px">
+  <div class="btnrow"><button type="button" class="btn" id="startLeagueBtn">🚀 استارت لیگ از این تاریخ</button></div>
+  <div id="leagueStartStatus" class="notice">هنوز تاریخ شروع لیگ ثبت نشده است.</div>
+ </div>
+ <div class="league-head"><h2>جدول رتبه‌بندی فروشنده‌ها</h2><button type="button" class="btn secondary" id="refreshLeague">↻ بروزرسانی</button></div>
+ <p class="hint">رتبه‌بندی بر اساس تعداد جفت‌های فروخته‌شده است؛ در صورت مساوی بودن، تعداد فروش و سپس نام ملاک قرار می‌گیرد.</p>
+ <div id="sellerLeagueList" class="league-list"><div class="empty">در حال بارگذاری جدول لیگ…</div></div>
+ <div class="league-foot">🥇 نفر اول · 🥈 نفر دوم · 🥉 نفر سوم — فروش‌های ثبت‌شده در سوابق سیستم محاسبه می‌شوند.</div>
+</section>
+<section class="panel" id="tab-scan"><h2>اسکن نام و مشخصات کفش</h2><p class="hint">دیگر بارکد خوانده نمی‌شود؛ دوربین نوشته‌های روی لیبل را می‌خواند و مدل، رنگ و سایز را استخراج می‌کند. برای اسکن دوربین، ممکن است لازم باشد سایت با HTTPS باز شود.</p>
+<div class="btnrow"><button class="btn" id="modeIn">ورود کالا (+۱)</button><button class="btn danger" id="modeOut">خروج کالا (−۱)</button></div><div id="modeNotice" class="notice">حالت فعلی: ورود کالا؛ هر اسکن یک جفت اضافه می‌کند.</div><div class="scanbox"><div id="scanStatus" class="scanstate off">دوربین هنوز روشن نشده است.</div><div class="video-frame"><video id="video" class="hidden" playsinline muted></video><div id="labelGuide" class="label-guide hidden"></div></div><div class="btnrow"><button class="btn" id="startCamera">روشن‌کردن دوربین</button><button class="btn secondary" id="stopCamera">توقف دوربین</button></div>
+<div class="btnrow"><button class="btn" id="readLabelBtn">📷 خواندن اسم و سایز لیبل</button></div></div>
+<div class="searchrow" style="display:none" aria-hidden="true"><input id="scanCode" placeholder="شناسه داخلی" autocomplete="off"><button class="btn" id="addScan" type="button">ثبت</button></div><div id="scanFeedback" class="notice hidden"></div><div id="ocrFeedback" class="notice hidden"></div>
+<div class="notice">روش کار: لیبل را نزدیک و صاف داخل کادر بگیر؛ دکمه خواندن، چند برش و روش پردازش تصویر را خودکار امتحان می‌کند. بارکد نادیده گرفته می‌شود. اگر همان مدل/رنگ/سایز قبلاً ثبت شده باشد، یک جفت به موجودی اضافه می‌شود.</div><div class="hint" style="margin-top:10px">خواندن نوشته‌های فارسی به کیفیت تصویر و اینترنت برای بارگذاری موتور OCR وابسته است. اگر متن خوانده نشود، مشخصات را در بخش «ثبت دستی» اصلاح کن. اطلاعات فقط روی همین مرورگر و همین گوشی ذخیره می‌شود.</div></section>
+<section class="panel hidden" id="tab-search"><h2>جست‌وجوی کفش‌های موجود</h2><div class="searchfilters"><div class="filterbar"><div class="search-main"><label for="searchInput">جست‌وجوی مدل، رنگ یا سایز</label><input id="searchInput" placeholder="مثلاً Jordan" autocomplete="off"></div><div><label for="modelFilter">فیلتر مدل</label><select id="modelFilter"><option value="">همه مدل‌های نتیجه</option></select></div><div><label for="colorFilter">فیلتر رنگ</label><select id="colorFilter"><option value="">همه رنگ‌های نتیجه</option></select></div><div><label for="sizeFilter">فیلتر سایز</label><select id="sizeFilter"><option value="">همه سایزهای نتیجه</option></select></div></div></div><div id="modelEditModal" class="hidden" style="position:fixed;inset:0;z-index:10000;background:#0008;display:none;align-items:center;justify-content:center;padding:12px"><div style="background:var(--card,#fff);color:var(--text,#222);width:min(900px,100%);max-height:90vh;overflow:auto;border-radius:18px;padding:18px;box-shadow:0 20px 60px #0003"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px"><h2 style="margin:0">ویرایش مدل و موجودی</h2><button type="button" class="btn secondary" id="closeModelEdit">✕</button></div><label for="editModelName">نام مدل</label><input id="editModelName" style="width:100%"><div style="overflow:auto;margin-top:12px"><table style="width:100%;border-collapse:collapse;min-width:600px"><thead><tr><th>رنگ</th><th>سایز</th><th>تعداد جفت</th></tr></thead><tbody id="editModelRows"></tbody></table></div><div class="btnrow" style="margin-top:14px"><button type="button" class="btn primary" id="saveModelEdit">ذخیره تغییرات</button><button type="button" class="btn secondary" id="cancelModelEdit">لغو</button></div><div id="modelEditFeedback" class="notice hidden"></div></div></div><div id="inventoryList" class="list"></div><div class="btnrow"><button class="btn secondary" id="exportCsv">خروجی Excel/CSV</button><button class="btn danger" id="clearAll">پاک‌کردن همه اطلاعات</button></div></section>
+<section class="panel hidden" id="tab-upload"><h2>📥 ورودی کالا</h2><p class="hint">برای اضافه‌کردن موجودی، روش ورود را انتخاب کن.</p><div class="request-subtabs" id="inventoryEntrySubtabs"><button type="button" class="request-subtab active" data-entry-tab="file">📊 با فایل اکسل</button><button type="button" class="request-subtab" data-entry-tab="manual">✍️ بدون فایل</button></div><div id="inventoryEntryFilePane"><h3>ورود با فایل اکسل</h3><p class="hint">موجودی فایل به موجودی فعلی اضافه می‌شود؛ هیچ کفش یا اطلاعات قبلی حذف نمی‌شود.</p><div class="upload-card"><label for="excelInventoryFile">انتخاب فایل اکسل (.xlsx)</label><input id="excelInventoryFile" type="file" accept=".xlsx,.xlsm,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"><div class="hint">فایل نمونه فروشگاه هم پشتیبانی می‌شود: ستون‌های «تعداد»، «نام کالا» و «نام زیرمجموعه»؛ برای نمونه، «berberis / 42» به رنگ berberis و سایز 42 تبدیل می‌شود. فایل‌های دارای ستون‌های جداگانه مدل، رنگ، سایز و تعداد نیز قابل استفاده‌اند.</div><button class="btn upload-btn" id="uploadExcelBtn" type="button">⬆️ افزودن موجودی از فایل اکسل</button><div id="excelUploadFeedback" class="notice hidden"></div><div id="excelPreviewWrap" class="hidden" style="margin-top:14px"><h3>پیش‌نمایش موجودی فایل</h3><p class="hint">موجودی فعلی حذف نمی‌شود. تعداد فایل به موجودی فعلی اضافه خواهد شد؛ قبل از تأیید، ردیف‌ها را بررسی کن.</p><div id="excelPreviewSummary" class="notice"></div><div style="overflow:auto;max-height:360px;border:1px solid var(--line);border-radius:12px"><table style="width:100%;border-collapse:collapse;min-width:560px"><thead><tr><th>نام کفش</th><th>رنگ</th><th>سایز</th><th>تعداد فایل</th><th>موجودی فعلی</th><th>بعد از تأیید</th></tr></thead><tbody id="excelPreviewRows"></tbody></table></div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button class="btn primary" id="confirmExcelImportBtn" type="button">✅ درسته، اضافه کن به موجودی</button><button class="btn secondary" id="cancelExcelPreviewBtn" type="button">لغو</button></div></div></div></div><div id="inventoryEntryManualPane" class="hidden"><div class="divider" style="height:1px;background:var(--line);margin:20px 0"></div><h2>👟 ثبت تکی کفش</h2><p class="hint">این بخش دو قسمت دارد تا کفش‌های مرجوعی، تعویضی و مشکل‌دار از کفش‌های جدید جدا باشند.</p><div class="request-subtabs" id="singleStockSubtabs"><button type="button" class="request-subtab active" data-single-stock-tab="returns">↩️ مرجوعی / تعویضی / مشکل‌دار</button><button type="button" class="request-subtab" data-single-stock-tab="new">👟 کفش‌های جدید</button></div><div id="singleStockReturnsPane"><h3>مرجوعی، تعویضی یا مشکل‌دار</h3><p class="hint">برای کالاهای برگشتی یا مشکل‌دار از این قسمت استفاده کن.</p>
+<label for="singleStockReason">نوع ثبت</label><select id="singleStockReason"><option value="defective">کفش مشکل‌دار</option><option value="return">مرجوعی</option><option value="exchange">تعویضی</option></select>
+<div id="singleExchangeTypeWrap" class="hidden"><label for="singleExchangeType">مشتری با چه چیزی تعویض کرده؟</label><select id="singleExchangeType"><option value="shoe">با کفش</option><option value="clothing">با لباس</option></select><label for="exchangeReturnedDesc">کفشی که مشتری برگردانده (مدل، رنگ، سایز)</label><input id="exchangeReturnedDesc" placeholder="مثلاً جردن فور، مشکی، سایز ۴۲"><div id="exchangeReceivedWrap" class="hidden"><label for="exchangeReceivedDesc">چیزی که مشتری به‌جایش برده</label><input id="exchangeReceivedDesc" placeholder="مثلاً کتونی ونس برشکا / لباس مشکی"></div></div>
+<div id="singleClothingConfirmWrap" class="hidden"><label style="display:flex;gap:8px;align-items:center;margin-top:10px"><input id="singleClothingConfirm" type="checkbox" style="width:auto"> تعویض با لباس انجام شد (فقط ثبت تیک، بدون تغییر موجودی کفش)</label><button class="btn" id="confirmClothingExchange" type="button" style="width:100%;margin-top:10px">✓ ثبت تعویض با لباس</button><div id="singleClothingFeedback" class="notice hidden"></div></div>
+<div id="singleStockAddWrap"><label for="returnStockModelSearch">جست‌وجوی مدل کفش</label><input id="returnStockModelSearch" type="search" placeholder="بخشی از نام مدل را بنویس؛ مثلاً جردن..."><label for="returnStockModel">انتخاب مدل از نتایج</label><select id="returnStockModel"><option value="">اول مدل را جست‌وجو کن</option></select><div class="grid2"><div><label for="returnStockColor">رنگ موجود</label><select id="returnStockColor"><option value="">انتخاب رنگ</option></select><label style="display:flex;gap:8px;align-items:center;margin-top:8px"><input id="returnStockCustomColorToggle" type="checkbox" style="width:auto"> رنگ دلخواه / جدید</label><input id="returnStockCustomColor" class="hidden" placeholder="نام رنگ جدید" style="margin-top:6px"></div><div><label for="returnStockSize">سایز موجود</label><select id="returnStockSize"><option value="">انتخاب سایز</option></select><label style="display:flex;gap:8px;align-items:center;margin-top:8px"><input id="returnStockCustomSizeToggle" type="checkbox" style="width:auto"> سایز دلخواه / جدید</label><input id="returnStockCustomSize" class="hidden" placeholder="مثلاً ۴۵ یا ۳۷.۵" style="margin-top:6px"></div></div><label style="display:flex;gap:8px;align-items:center;margin-top:10px"><input id="returnStockNewModelToggle" type="checkbox" style="width:auto"> مدل جدیدی که در انبار نیست</label><input id="returnStockNewModel" class="hidden" placeholder="نام مدل جدید کفش" style="margin-top:6px"><label for="returnStockQty">تعداد جفت اضافه‌شونده</label><input id="returnStockQty" type="number" min="1" step="1" value="1"><button class="btn" id="addReturnStockBtn" type="button" style="width:100%;margin-top:12px">＋ اضافه کردن به موجودی</button><div id="returnStockFeedback" class="notice hidden"></div></div></div><div id="singleStockNewPane" class="hidden"><h3>ثبت کفش جدید در انبار</h3><p class="hint">مدل را جست‌وجو کن یا مدل جدید بساز؛ رنگ و سایز جدید هم قابل واردکردن است. اگر ترکیب از قبل موجود باشد، تعداد به موجودی فعلی اضافه می‌شود.</p><label for="newStockModelSearch">جست‌وجوی مدل کفش</label><input id="newStockModelSearch" type="search" placeholder="مثلاً جردن..." autocomplete="off"><label for="newStockModel">انتخاب مدل از نتایج</label><select id="newStockModel"><option value="">اول مدل را جست‌وجو کن</option></select><label style="display:flex;gap:8px;align-items:center;margin-top:10px"><input id="newStockNewModelToggle" type="checkbox" style="width:auto"> مدل جدیدی که در انبار نیست</label><input id="newStockNewModel" class="hidden" placeholder="نام مدل جدید کفش" style="margin-top:6px"><div class="grid2"><div><label for="newStockColor">رنگ موجود</label><select id="newStockColor"><option value="">انتخاب رنگ</option></select><label style="display:flex;gap:8px;align-items:center;margin-top:8px"><input id="newStockCustomColorToggle" type="checkbox" style="width:auto"> رنگ جدید / دلخواه</label><input id="newStockCustomColor" class="hidden" placeholder="نام رنگ جدید" style="margin-top:6px"></div><div><label for="newStockSize">سایز موجود</label><select id="newStockSize"><option value="">انتخاب سایز</option></select><label style="display:flex;gap:8px;align-items:center;margin-top:8px"><input id="newStockCustomSizeToggle" type="checkbox" style="width:auto"> سایز جدید / دلخواه</label><input id="newStockCustomSize" class="hidden" placeholder="مثلاً ۴۵ یا ۳۷.۵" style="margin-top:6px"></div></div><label for="newStockQty">تعداد جفت</label><input id="newStockQty" type="number" min="1" step="1" value="1"><button class="btn" id="addNewStockBtn" type="button" style="width:100%;margin-top:12px">＋ اضافه کردن کفش جدید به موجودی</button><div id="newStockFeedback" class="notice hidden"></div></div></div></section>
+<section class="panel hidden" id="tab-manage"><h2>ثبت یا ویرایش مشخصات کالا</h2><p class="hint">مدل، رنگ، سایز و تعداد کفش را وارد کن. شناسه داخلی کالا به‌صورت خودکار ساخته می‌شود.</p><input id="pBarcode" type="hidden" value=""><label for="pModel">مدل / نام کفش (اجباری)</label><input id="pModel" placeholder="مثلاً Runner 2026"><div class="grid2"><div><label for="pColor">رنگ</label><input id="pColor" placeholder="مثلاً مشکی-سفید"></div><div><label for="pSize">سایز</label><input id="pSize" placeholder="مثلاً ۴۲" inputmode="decimal"></div></div><label for="pQty">تعداد اولیه (جفت)</label><input id="pQty" type="number" min="0" step="1" value="0"><div class="btnrow"><button class="btn" id="saveProduct">ذخیره مشخصات</button><button class="btn secondary" id="loadCode" style="display:none" type="button">بارگذاری</button></div><div class="hint" style="margin-top:10px">کفش‌هایی با مدل، رنگ و سایز متفاوت جداگانه نگهداری می‌شوند.</div></section>
+<section class="panel hidden" id="tab-outgoing"><h2>📤 سوابق خروج کالا</h2><p class="hint">در این قسمت فقط سوابق خروج ثبت‌شده نمایش داده می‌شود. برای خروج تعداد مشخصی از یک کفش، از بخش «جستجو» استفاده کن.</p><div class="filterbar" style="margin:12px 0"><div><label for="outgoingDateFilter">فیلتر تاریخ خروج</label><input type="date" id="outgoingDateFilter"></div><button type="button" class="btn secondary" id="clearOutgoingDateFilter">نمایش همه تاریخ‌ها</button></div><div class="btnrow"><button class="btn secondary" id="exportOutgoing">خروجی اکسل‌خوان سوابق خروج</button><button class="btn secondary" id="exportAll">خروجی موجودی + خروج‌ها</button></div><div id="outgoingList" class="list"></div></section>
+<section class="panel hidden" id="tab-transfers"><h2>🔄 نقل و انتقالات تعویضی</h2><p class="hint">اینجا مشخص است مشتری کفش را با چه چیزی تعویض کرده است؛ تعویض با کفش، مدل کفش جایگزین را نشان می‌دهد و تعویض با لباس بدون کم‌کردن موجودی کفش ثبت می‌شود.</p><div id="transferList" class="list"></div></section>
+<section class="panel hidden" id="tab-requests"><div id="sellerRequestsPanel"><h2>📨 درخواست‌های من</h2><p class="hint">وضعیت درخواست‌های ارسال‌شده برای مدیر را اینجا ببین.</p><div class="request-subtabs seller-request-subtabs"><button type="button" class="request-subtab active" data-seller-request-view="pending">⏳ در انتظار بررسی</button><button type="button" class="request-subtab" data-seller-request-view="sold">📥 صندوق</button></div><div id="sellerRequestsPending" class="list"><div class="empty">درخواستی ثبت نشده است.</div></div><div id="sellerRequestsSold" class="list hidden"><div class="empty">صندوق خالی است.</div></div></div><div id="adminRequestsPanel"><h2>📨 مدیریت درخواست‌ها</h2><p class="hint">درخواست‌های فروشنده‌ها و خروج‌هایی که امکان برگشت به انبار دارند، از دو بخش زیر قابل مدیریت هستند.</p><div class="btnrow" style="margin:0 0 10px"><button class="btn secondary" type="button" id="enableRequestSound">🔔 فعال‌کردن صدای اعلان درخواست</button><span class="hint" id="requestSoundStatus">برای پخش صدا، یک‌بار دکمه را بزن.</span></div><div class="btnrow" style="margin:0 0 12px"><button class="btn" type="button" id="enablePushNotifications">🔔 فعال‌کردن نوتیفیکیشن مرورگر</button><span class="hint" id="pushNotificationStatus">برای دریافت اعلان حتی وقتی سایت بسته است، یک‌بار فعال کن.</span></div><div class="request-subtabs"><button type="button" class="request-subtab active" data-request-subtab="incoming">📨 درخواست‌های دریافتی</button><button type="button" class="request-subtab" data-request-subtab="outgoing">📤 خروجی‌های انبار</button></div><div id="requestSubIncoming"><div class="btnrow" style="margin:0 0 12px"><button class="btn danger" id="clearKeptRequests">🗑 پاک‌کردن همه درخواست‌های مانده در انبار</button></div><div id="adminRequestList" class="list"><div class="empty">در حال دریافت درخواست‌ها…</div></div><h2 style="margin-top:22px">📊 آمار فروشنده‌ها</h2><div id="sellerSalesReport" class="list"><div class="empty">در حال دریافت آمار…</div></div></div><div id="requestSubOutgoing" class="hidden"><p class="hint">خروج‌هایی که از انبار ثبت شده‌اند اینجا نمایش داده می‌شوند. برای برگشت دادن یک جفت به موجودی، دکمه «برگشت به موجودی» را بزن.</p><div class="filterbar" style="margin:12px 0"><div><label for="adminOutgoingDateFilter">فیلتر تاریخ خروج</label><input type="date" id="adminOutgoingDateFilter"></div><button type="button" class="btn secondary" id="clearAdminOutgoingDateFilter">نمایش همه تاریخ‌ها</button></div><div style="margin:10px 0"><label for="adminOutgoingSearch">جستجو در خروجی‌ها</label><input type="search" id="adminOutgoingSearch" placeholder="مدل، رنگ، سایز، فروشنده یا مدیر خروج‌کننده..." autocomplete="off"></div><div id="adminOutgoingList" class="list"><div class="empty">در حال دریافت خروج‌ها…</div></div></div></div></section>
+<section class="panel hidden" id="tab-sellers"><div id="adminSellerListView"><h2>👥 فروشنده‌ها</h2><p class="hint">برای مشاهده پروفایل و فروش‌های هر فروشنده، روی نام او بزن.</p><div id="adminSellerList" class="list"><div class="empty">در حال دریافت فهرست فروشنده‌ها…</div></div></div><div id="adminSellerProfileView" class="hidden"><div class="seller-profile-head"><div><h2 id="adminSellerName">پروفایل فروشنده</h2><div class="hint" id="adminSellerUsername"></div></div><button class="btn back-sellers" type="button" id="backToSellerList">← فهرست فروشنده‌ها</button></div><div class="card"><h3>فروش امروز</h3><div class="sales-number" id="adminSellerTodayPairs">۰ جفت</div><div id="adminSellerTodayList"></div></div><div class="card"><h3>تغییر رمز عبور</h3><p class="hint">رمز فعلی به‌صورت امن و رمزنگاری‌شده ذخیره شده و قابل نمایش نیست؛ در صورت نیاز می‌توانی رمز جدید تعیین کنی.</p><label for="adminSellerNewPassword">رمز جدید (حداقل ۱۰ کاراکتر)</label><input id="adminSellerNewPassword" type="password" minlength="10" autocomplete="new-password"><button class="btn" type="button" id="saveSellerPassword">🔐 تغییر رمز</button><div class="notice hidden" id="sellerPasswordFeedback"></div></div><div class="card"><h3>سوابق فروش اخیر</h3><div id="adminSellerRecentSales"></div></div></div></section>
+<section class="panel hidden" id="tab-profile"><div style="display:flex;align-items:center;gap:15px;margin-bottom:20px"><div class="profile-avatar">👤</div><div><h2 style="margin:0 0 5px">پروفایل من</h2><div class="hint">اطلاعات حساب کاربری شما</div></div></div><div class="profile-row"><div class="profile-label">نام و نام خانوادگی</div><div class="profile-value" id="profileName">—</div></div><div class="profile-row"><div class="profile-label">نام کاربری</div><div class="profile-value" id="profileUsername">—</div></div><div class="profile-row"><div class="profile-label">نوع حساب</div><div class="profile-value" id="profileRole">فروشنده</div></div><div class="profile-row"><div class="profile-label">وضعیت</div><div class="profile-value" style="color:#059669">فعال</div></div><div id="sellerProfileSales" class="seller-profile-sales"><h3 style="margin:18px 0 8px">جفت‌های فروخته‌شده توسط شما</h3><div class="sales-number" id="sellerSoldCount">۰ جفت</div><p class="hint">تعداد جفت‌هایی که مدیر خروج آن‌ها را تأیید کرده است.</p><h4>فروش‌های امروز</h4><div id="sellerTodaySalesList"><div class="empty">در حال بارگذاری…</div></div></div><div class="btnrow"><a class="btn" href="/logout" style="text-align:center;text-decoration:none;display:block">خروج از حساب</a></div></section><div class="footer">سامانه مدیریت موجودی کفش</div>
+</main><div id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/@zxing/browser@0.1.5/umd/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id); const KEY='shoe_inventory_v1'; const OUTKEY='shoe_inventory_outgoing_v1'; const IMPORTKEY='shoe_inventory_excel_19mehr_imported_v1'; const BASE_INVENTORY=[]; let inventoryLimit=100; let products=load(); let outgoing=loadOutgoing(); let scanMode='in'; let stream=null,detector=null,raf=null,lastCode='',lastAt=0,armedCode='',lastDetectedAt=0,audioCtx=null,ocrBusy=false,zxingReader=null,zxingControls=null;
+function load(){
+  if(Array.isArray(window.__SHOE_SERVER_STATE__?.products)){
+    const shared=window.__SHOE_SERVER_STATE__.products.map(p=>({...p}));
+    try{localStorage.setItem(KEY,JSON.stringify(shared));localStorage.setItem(IMPORTKEY,'1')}catch(e){}
+    return shared;
+  }
+  let current=[];
+  try{current=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){current=[]}
+  try{
+    if(!localStorage.getItem(IMPORTKEY)){
+      for(const base of BASE_INVENTORY){
+        const same=current.find(p=>(p.model||'').trim()===base.model && (p.color||'').trim()===base.color && String(p.size||'').trim()===base.size);
+        if(same){same.qty=base.qty;same.sourceExcel=true;}
+        else current.push({...base});
+      }
+      localStorage.setItem(KEY,JSON.stringify(current));
+      localStorage.setItem(IMPORTKEY,'1');
+    }
+  }catch(e){console.warn('Excel inventory import failed',e)}
+  return current;
+}
+function loadOutgoing(){if(Array.isArray(window.__SHOE_SERVER_STATE__?.outgoing)){try{localStorage.setItem(OUTKEY,JSON.stringify(window.__SHOE_SERVER_STATE__.outgoing));return window.__SHOE_SERVER_STATE__.outgoing.map(x=>({...x}))}catch(e){}}try{return JSON.parse(localStorage.getItem(OUTKEY)||'[]')}catch(e){return []}}
+let syncQueue=Promise.resolve();function syncSharedState(){const snapshot={products:products.map(p=>({...p})),outgoing:outgoing.map(x=>({...x}))};syncQueue=syncQueue.then(()=>fetch('/api/state',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(snapshot)})).then(r=>{if(!r.ok)throw new Error('sync failed');window.__SHOE_SERVER_STATE__=snapshot}).catch(()=>toast('ذخیره روی سرور انجام نشد؛ اتصال را بررسی کن.'));return syncQueue}
+function persistOutgoing(){localStorage.setItem(OUTKEY,JSON.stringify(outgoing));renderOutgoing();syncSharedState()}
+function persist(){localStorage.setItem(KEY,JSON.stringify(products));render();syncSharedState()}
+function digits(s){return String(s??'').replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d))}
+function fa(n){return new Intl.NumberFormat('fa-IR').format(n)}
+function toast(s){$('toast').textContent=s;$('toast').style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>$('toast').style.display='none',2600)}
+function switchTab(name){if(window.__SHOE_ROLE__==='admin'&&['profile','scan','manage'].includes(name))return;if(window.__SHOE_ROLE__==='seller'&&['upload','scan','manage','outgoing','transfers'].includes(name))return;document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===name));['scan','search','upload','manage','outgoing','transfers','requests','profile','league','sellers'].forEach(t=>{const el=$('tab-'+t);if(el)el.classList.toggle('hidden',t!==name)});if(name==='search')render(true);if(name==='outgoing'){renderOutgoing();}if(name==='transfers')renderTransfers();if(name==='requests')renderAdminRequests();if(name==='league')loadSellerLeague();if(name==='sellers')loadAdminSellers()}
+function setInventoryEntryTab(which){const file=which==='file';$('inventoryEntryFilePane').classList.toggle('hidden',!file);$('inventoryEntryManualPane').classList.toggle('hidden',file);document.querySelectorAll('[data-entry-tab]').forEach(b=>b.classList.toggle('active',b.dataset.entryTab===which));}
+document.querySelectorAll('[data-entry-tab]').forEach(b=>b.addEventListener('click',()=>setInventoryEntryTab(b.dataset.entryTab)));
+function switchRequestSubtab(name){document.querySelectorAll('[data-request-subtab]').forEach(b=>b.classList.toggle('active',b.dataset.requestSubtab===name));$('requestSubIncoming')?.classList.toggle('hidden',name!=='incoming');$('requestSubOutgoing')?.classList.toggle('hidden',name!=='outgoing');if(name==='outgoing')renderAdminOutgoing()}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.tab==='manage'){$('pBarcode').value='';$('pModel').value='';$('pColor').value='';$('pSize').value='';$('pQty').value='0'}switchTab(b.dataset.tab)}));
+function find(code){return products.find(p=>p.barcode===String(code).trim())}
+function beep(){try{if(!audioCtx)audioCtx=new (window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume();const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();osc.type='sine';osc.frequency.value=880;gain.gain.setValueAtTime(0.0001,audioCtx.currentTime);gain.gain.exponentialRampToValueAtTime(0.18,audioCtx.currentTime+0.015);gain.gain.exponentialRampToValueAtTime(0.0001,audioCtx.currentTime+0.16);osc.connect(gain);gain.connect(audioCtx.destination);osc.start();osc.stop(audioCtx.currentTime+0.17)}catch(e){}}
+$('enableRequestSound')?.addEventListener('click',async()=>{try{if(!audioCtx)audioCtx=new (window.AudioContext||window.webkitAudioContext)();await audioCtx.resume();requestSoundEnabled=true;beep();$('requestSoundStatus').textContent='صدای اعلان فعال است.';if('Notification'in window&&Notification.permission==='default'){try{await Notification.requestPermission()}catch(e){}}}catch(e){$('requestSoundStatus').textContent='صدای اعلان در این مرورگر در دسترس نیست.'}});
+function setScanMode(mode){scanMode=mode;$('modeIn').classList.toggle('secondary',mode!=='in');$('modeOut').classList.toggle('secondary',mode!=='out');$('modeOut').classList.toggle('danger',mode==='out');$('modeNotice').textContent=mode==='out'?'حالت خروج کالا فعال است؛ هر اسکن یک جفت کم می‌کند و در سوابق خروج ثبت می‌شود.':'حالت ورود کالا فعال است؛ هر اسکن یک جفت به موجودی اضافه می‌کند.';toast(mode==='out'?'حالت خروج کالا فعال شد.':'حالت ورود کالا فعال شد.')}
+$('modeIn').addEventListener('click',()=>setScanMode('in'));$('modeOut').addEventListener('click',()=>setScanMode('out'));
+function recordOutgoing(p,code){
+  if(!p){toast('این بارکد در انبار ثبت نشده است؛ خروج انجام نشد.');$('scanFeedback').classList.remove('hidden');$('scanFeedback').textContent='بارکد در موجودی پیدا نشد؛ ابتدا کالا را ثبت کن.';return false}
+  if((Number(p.qty)||0)<=0){toast('موجودی این کالا صفر است.');return false}
+  p.qty=Number(p.qty)-1;
+  outgoing.unshift({date:Date.now(),barcode:code,model:p.model||'',color:p.color||'',size:p.size||'',qty:1,managerName:(window.__SHOE_ROLE__==='admin'?(window.__SHOE_NAME__||window.__SHOE_USERNAME__||'مدیر'):'') ,managerUsername:(window.__SHOE_ROLE__==='admin'?(window.__SHOE_USERNAME__||''):'') ,description:'خروج توسط '+(window.__SHOE_NAME__||window.__SHOE_USERNAME__||'مدیر')});
+  persist();persistOutgoing();beep();if(navigator.vibrate)navigator.vibrate([70,40,70]);
+  $('scanFeedback').classList.remove('hidden');
+  $('scanFeedback').textContent=`خروج ثبت شد: ${p.model||'مدل نامشخص'} · ${p.color||'رنگ نامشخص'} · سایز ${p.size||'نامشخص'} — مانده: ${fa(p.qty)} جفت`;
+  return true;
+}
+function handleBarcodeScan(code,options={}){if(scanMode==='out')return recordOutgoing(find(code),String(code).trim());return addOne(code,options)}
+async function enableBrowserPush(){const status=$('pushNotificationStatus'),btn=$('enablePushNotifications');if(!('serviceWorker' in navigator)||!('PushManager' in window)||!('Notification' in window)){if(status)status.textContent='این مرورگر از اعلان پوش پشتیبانی نمی‌کند.';return}try{if(location.protocol!=='https:'&&location.hostname!=='localhost'){if(status)status.textContent='برای نوتیفیکیشن خارج از سایت، اتصال HTTPS لازم است.';return}const perm=await Notification.requestPermission();if(perm!=='granted'){if(status)status.textContent='اجازه اعلان داده نشد؛ از تنظیمات مرورگر فعالش کن.';return}const keyRes=await fetch('/api/push/public-key');const keyData=await keyRes.json();if(!keyData.publicKey){if(status)status.textContent='کلید اعلان روی سرور تنظیم نشده؛ راهنمای نصب را اجرا کن.';return}const reg=await navigator.serviceWorker.register('/sw.js');let sub=await reg.pushManager.getSubscription();if(!sub)sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:base64UrlToUint8Array(keyData.publicKey)});const res=await fetch('/api/push/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({subscription:sub.toJSON()})});const data=await res.json();if(!res.ok)throw new Error(data.error||'ثبت اشتراک اعلان ناموفق بود');if(status)status.textContent='اعلان مرورگر فعال شد؛ حتی وقتی سایت بسته باشد.';if(btn)btn.textContent='✅ اعلان مرورگر فعال است';toast('نوتیفیکیشن مرورگر فعال شد.')}catch(err){if(status)status.textContent=err.message||'فعال‌سازی اعلان ناموفق بود.';toast(err.message||'فعال‌سازی اعلان ناموفق بود')}}function base64UrlToUint8Array(s){const padding='='.repeat((4-s.length%4)%4),raw=atob((s+padding).replace(/-/g,'+').replace(/_/g,'/'));const out=new Uint8Array(raw.length);for(let i=0;i<raw.length;i++)out[i]=raw.charCodeAt(i);return out}if($('enablePushNotifications')&&window.__SHOE_ROLE__==='admin')$('enablePushNotifications').addEventListener('click',enableBrowserPush);
+function addOne(code,options={}){code=String(code||'').trim();if(!code){toast('اول بارکد را وارد یا اسکن کن.');return}let p=find(code);if(!p){p={barcode:code,model:'',color:'',size:'',qty:1,created:Date.now()};products.push(p);persist();$('pBarcode').value=code;$('pModel').value='';$('pColor').value='';$('pSize').value='';$('pQty').value=p.qty;$('pModel').focus();if(!options.silent)toast('بارکد جدید ثبت شد؛ مشخصات مدل، رنگ و سایز را تکمیل کن.')}else{p.qty=(Number(p.qty)||0)+1;persist();if(!options.silent)toast('یک جفت اضافه شد؛ موجودی: '+fa(p.qty)+' جفت')} $('scanCode').value='';$('scanFeedback').classList.remove('hidden');$('scanFeedback').textContent=p.model?`${p.model} · ${p.color||'رنگ نامشخص'} · سایز ${p.size||'نامشخص'} — موجودی: ${fa(p.qty)} جفت`:`بارکد ${code} ثبت شد. مشخصات را در بخش «ثبت دستی» تکمیل کن.`;return p}
+$('addScan').addEventListener('click',()=>handleBarcodeScan($('scanCode').value));$('scanCode').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();handleBarcodeScan($('scanCode').value)}});
+$('loadCode').addEventListener('click',()=>{const code=$('scanCode').value.trim()||$('pBarcode').value.trim();if(!code){toast('اول یک بارکد وارد کن.');return}const p=find(code);$('pBarcode').value=code;if(p){$('pModel').value=p.model||'';$('pColor').value=p.color||'';$('pSize').value=p.size||'';$('pQty').value=p.qty??0;toast('مشخصات بارکد بارگذاری شد.')}else toast('بارکد جدید است؛ مشخصات را وارد کن.')});
+$('saveProduct').addEventListener('click',()=>{let barcode=$('pBarcode').value.trim();const model=$('pModel').value.trim(),color=$('pColor').value.trim(),size=digits($('pSize').value.trim());if(!model){toast('نام مدل کفش اجباری است.');return}let p=barcode?find(barcode):products.find(x=>(x.model||'').trim()===model&&(x.color||'').trim()===color&&String(x.size||'').trim()===size);if(!p){barcode='ITEM-'+Date.now()+'-'+Math.random().toString(36).slice(2,7);p={barcode,model,color,size,qty:0,created:Date.now()};products.push(p)}const qty=Math.max(0,parseInt(digits($('pQty').value),10)||0);p.model=model;p.color=color;p.size=size;p.qty=qty;$('pBarcode').value=p.barcode;persist();toast('مشخصات کالا ذخیره شد.');switchTab('search')});
+function render(refreshFilterOptions=false){
+const total=products.reduce((s,p)=>s+(Number(p.qty)||0),0);
+$('totalPairs').textContent=fa(total);
+$('totalSkus').textContent=fa(products.filter(p=>(Number(p.qty)||0)>0).length);
+const q=normalizeSearch($('searchInput').value);
+const isSeller=window.__SHOE_ROLE__==='seller';
+$('searchInput').placeholder=isSeller?'نام مدل، رنگ یا سایز کفش را جست‌وجو کن…':'برای دیدن کفش‌ها، نام مدل، رنگ یا سایز را جست‌وجو کن';
+const matchingProducts=products.filter(p=>(Number(p.qty)||0)>0)
+.filter(p=>!!q&&[p.model,p.color,p.size].some(v=>normalizeSearch(v).includes(q)));
+const uniqueSorted=(arr)=>[...new Set(arr.filter(Boolean).map(v=>String(v).trim()))].sort((a,b)=>a.localeCompare(b,'fa'));
+const models=uniqueSorted(matchingProducts.map(p=>p.model));
+const colors=uniqueSorted(matchingProducts.map(p=>p.color));
+const sizes=uniqueSorted(matchingProducts.map(p=>p.size)).sort((a,b)=>Number(digits(a))-Number(digits(b)));
+if(refreshFilterOptions){
+const oldM=$('modelFilter').value,oldC=$('colorFilter').value,oldS=$('sizeFilter').value;
+$('modelFilter').innerHTML='<option value="">همه مدل‌های نتیجه</option>'+models.map(x=>`<option value="${attr(x)}">${esc(x)}</option>`).join('');
+$('colorFilter').innerHTML='<option value="">همه رنگ‌های نتیجه</option>'+colors.map(x=>`<option value="${attr(x)}">${esc(x)}</option>`).join('');
+$('sizeFilter').innerHTML='<option value="">همه سایزهای نتیجه</option>'+sizes.map(x=>`<option value="${attr(x)}">${esc(x)}</option>`).join('');
+$('modelFilter').value=models.includes(oldM)?oldM:'';
+$('colorFilter').value=colors.includes(oldC)?oldC:'';
+$('sizeFilter').value=sizes.includes(oldS)?oldS:'';
+}
+const list=matchingProducts.filter(p=>(!$('modelFilter').value||p.model===$('modelFilter').value)&&(!$('colorFilter').value||p.color===$('colorFilter').value)&&(!$('sizeFilter').value||p.size===$('sizeFilter').value)).sort((a,b)=>(a.model||'').localeCompare(b.model||'','fa'));
+const visible=list.slice(0,inventoryLimit);
+const emptyMarkup=(!q?'<div class="empty" style="background:linear-gradient(135deg,#eff6ff,#f0fdfa);border:1px dashed #93c5fd;border-radius:18px;padding:32px 18px"><div style="font-size:42px;margin-bottom:10px">👟 ✨</div><strong style="display:block;color:#1d4ed8;font-size:16px;margin-bottom:8px">برای نمایش کفش‌ها جست‌وجو کن</strong><span>نام مدل، رنگ یا سایز را وارد کن تا فقط نتایج مرتبط نمایش داده شوند.</span></div>':'<div class="empty">کالایی با این مشخصات پیدا نشد. عبارت دیگری را امتحان کن.</div>');
+const expandedModels=window.__queliExpandedModels||(window.__queliExpandedModels=new Set());
+const variantMarkup=(p)=>`<article class="item"><div class="itemtop"><div><div class="itemname">${esc(p.model||'مدل ثبت‌نشده')} ${p.defective?'<span class="badge" style="background:#fee4e2;color:#b42318;border:1px solid #fda29b;margin-right:6px">⚠ ایراددار</span>':''}</div><div class="sub meta-line"><span class="product-color-label">رنگ:</span><i class="color-chip" style="background:${colorHex(p.color)}"></i><span class="product-color-text">${esc(p.color||'—')}</span><span class="size-chip ${sizeClass(p.size)}">سایز ${esc(p.size||'—')}</span></div></div><div class="qty">${fa(p.qty)} جفت</div></div><div class="smallactions"><button class="btn secondary" data-act="plus" data-code="${attr(p.barcode)}">+۱ جفت</button><button class="btn secondary" data-act="edit" data-code="${attr(p.barcode)}">ویرایش</button><button class="btn danger" data-act="minus" data-code="${attr(p.barcode)}">−۱ جفت</button></div>${window.__SHOE_ROLE__==='seller'?`<button class="request-btn" data-request="${attr(p.barcode)}">📨 ثبت درخواست این کفش برای مدیر</button>`:window.__SHOE_ROLE__==='admin'?`<label for="outQty-${attr(p.barcode)}" style="display:block;margin-top:10px">تعداد جفت برای خروج</label><input id="outQty-${attr(p.barcode)}" data-out-qty="${attr(p.barcode)}" type="number" min="1" max="${Math.max(1,Number(p.qty)||1)}" step="1" value="1" inputmode="numeric" style="width:100%;text-align:center"><button class="btn danger" style="width:100%;margin-top:8px" data-act="out" data-code="${attr(p.barcode)}">⬇ خروج تعداد انتخاب‌شده</button>`:''}</article>`;
+const grouped=new Map();for(const p of visible){const name=String(p.model||'مدل ثبت‌نشده').trim();if(!grouped.has(name))grouped.set(name,[]);grouped.get(name).push(p)}
+const productsMarkup=[...grouped.entries()].map(([model,variants])=>{const isOpen=expandedModels.has(model);const totalQty=variants.reduce((n,p)=>n+(Number(p.qty)||0),0);return `<section class="model-group"><button type="button" class="model-group-head" data-expand-model="${attr(model)}" aria-expanded="${isOpen}"><span class="model-arrow ${isOpen?'open':''}">›</span><span class="model-group-title">${esc(model)}</span><span class="model-group-count">${fa(variants.length)} ترکیب رنگ/سایز</span><span class="qty">${fa(totalQty)} جفت</span>${window.__SHOE_ROLE__==='admin'?`<span role="button" tabindex="0" class="model-edit-pencil" data-edit-model="${attr(model)}" title="ویرایش مدل" style="padding:5px 9px;border-radius:8px;background:#f3e8ff;color:#7e22ce;font-size:16px">✎</span><span role="button" tabindex="0" data-export-model="${attr(model)}" title="خروجی PDF موجودی مدل" style="padding:5px 9px;border-radius:8px;background:#e0f2fe;color:#075985;font-size:15px">⇩ PDF</span>`:''}</button>${isOpen?`<div class="model-variants">${variants.map(variantMarkup).join('')}</div>`:''}</section>`}).join('');
+const moreMarkup=list.length>inventoryLimit?`<div class="empty">نمایش ${fa(visible.length)} مورد از ${fa(list.length)} مورد · برای دیدن موارد بیشتر، دکمه زیر را بزن.</div><button class="btn secondary" id="showMoreInventory" style="width:100%;margin-top:8px">نمایش ۱۰۰ مورد بعدی</button>`:'';
+$('inventoryList').innerHTML=visible.length?productsMarkup+moreMarkup:emptyMarkup;
+const more=$('showMoreInventory'); if(more)more.addEventListener('click',()=>{inventoryLimit+=100;render()});
+if(window.__SHOE_ROLE__==='admin')renderReturnStockOptions();
+}
+
+let modelEditTarget='';
+function openModelEditor(model){
+ const rows=products.filter(p=>String(p.model||'').trim()===model).sort((a,b)=>Number(digits(a.size))-Number(digits(b.size))||String(a.color||'').localeCompare(String(b.color||''),'fa'));
+ if(!rows.length)return;
+ modelEditTarget=model;
+ $('editModelName').value=model;
+ $('editModelRows').innerHTML=rows.map((p,i)=>`<tr data-barcode="${attr(p.barcode)}"><td><input class="edit-variant-color" value="${attr(p.color||'')}" aria-label="رنگ" style="width:100%"></td><td><input class="edit-variant-size" value="${attr(p.size||'')}" aria-label="سایز" style="width:100%;max-width:100px"></td><td><input class="edit-variant-qty" type="number" min="0" step="1" value="${Number(p.qty)||0}" aria-label="تعداد" style="width:100%;max-width:120px"></td></tr>`).join('');
+ $('modelEditFeedback').classList.add('hidden');$('modelEditModal').style.display='flex';$('modelEditModal').classList.remove('hidden');
+}
+function closeModelEditor(){$('modelEditModal').style.display='none';$('modelEditModal').classList.add('hidden');}
+$('inventoryList').addEventListener('click',e=>{const pdf=e.target.closest('[data-export-model]');if(pdf){e.preventDefault();e.stopPropagation();exportModelPdf(pdf.dataset.exportModel);return}const pencil=e.target.closest('[data-edit-model]');if(pencil){e.preventDefault();e.stopPropagation();openModelEditor(pencil.dataset.editModel);}});
+function exportModelPdf(model){const rows=products.filter(p=>String(p.model||'').trim()===model).sort((a,b)=>String(a.color||'').localeCompare(String(b.color||''),'fa')||Number(digits(a.size))-Number(digits(b.size)));if(!rows.length){toast('موجودی این مدل پیدا نشد.');return}const body=rows.map((p,i)=>`<tr><td>${i+1}</td><td>${esc(p.color||'—')}</td><td>${esc(p.size||'—')}</td><td>${Number(p.qty)||0}</td><td>${esc(p.barcode||'')}</td></tr>`).join('');const w=window.open('','_blank');if(!w){toast('پنجره خروجی مسدود شد؛ اجازه بازشدن پنجره را بده.');return}w.document.write(`<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><title>موجودی ${esc(model)}</title><style>body{font-family:Tahoma,Arial;padding:24px;color:#222}h2{text-align:center}table{width:100%;border-collapse:collapse}th,td{border:1px solid #999;padding:8px;text-align:center}th{background:#eee}@media print{button{display:none}}</style><h2>گزارش موجودی مدل: ${esc(model)}</h2><table><thead><tr><th>ردیف</th><th>رنگ</th><th>سایز</th><th>تعداد جفت</th><th>شناسه</th></tr></thead><tbody>${body}</tbody></table><p>تعداد کل: ${rows.reduce((n,p)=>n+(Number(p.qty)||0),0)} جفت</p><button onclick="window.print()">چاپ / ذخیره PDF</button><script>window.onload=()=>setTimeout(()=>window.print(),300)<\/script></html>`);w.document.close()}
+$('closeModelEdit').addEventListener('click',closeModelEditor);$('cancelModelEdit').addEventListener('click',closeModelEditor);
+$('saveModelEdit').addEventListener('click',async()=>{
+ const model=$('editModelName').value.trim();if(!model){toast('نام مدل اجباری است.');return}
+ const variants=[...$('editModelRows').querySelectorAll('tr')].map(tr=>({barcode:tr.dataset.barcode,color:tr.querySelector('.edit-variant-color').value.trim(),size:digits(tr.querySelector('.edit-variant-size').value.trim()),qty:tr.querySelector('.edit-variant-qty').value}));
+ const btn=$('saveModelEdit');btn.disabled=true;btn.textContent='در حال ذخیره…';
+ try{const res=await fetch('/api/admin/products/edit-model',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({old_model:modelEditTarget,model,variants})});const data=await res.json();if(!res.ok)throw new Error(data.error||'ذخیره ناموفق بود');for(const v of variants){const p=find(v.barcode);if(p){p.model=model;p.color=v.color;p.size=v.size;p.qty=Math.max(0,parseInt(v.qty,10)||0)}}persist();closeModelEditor();render();toast('تغییرات مدل ذخیره شد.');}catch(err){toast(err.message||'ذخیره تغییرات ناموفق بود.')}finally{btn.disabled=false;btn.textContent='ذخیره تغییرات'}
+});
+function normalizeSearch(v){return String(v||'').toLowerCase().replace(/[يى]/g,'ی').replace(/ك/g,'ک').replace(/[‌\s-]+/g,'').trim()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function attr(s){return esc(s)}
+
+function colorHex(v){const s=String(v||'').toLowerCase().replace(/[ي]/g,'ی').replace(/[ك]/g,'ک');const map=[[/مشکی|سیاه|black|blk/,'#20242d'],[/سفید|سفيد|white|wht/,'#f8fafc'],[/قرمز|red/,'#e53945'],[/آبی|ابی|blue|navy|سرمه/,'#3157c8'],[/سبز|یشمی|زمرد|green|emerald/,'#14966b'],[/زرد|طلایی|موزی|yellow|gold/,'#e8bd28'],[/کرم|بژ|beige|cream/,'#e8d5b5'],[/قهوه|عسلی|موکا|brown|mocha/,'#8b5e3c'],[/طوسی|خاکستری|gray|grey/,'#9299a4'],[/صورتی|pink/,'#f2a1c2'],[/بنفش|purple/,'#8b5cf6'],[/نقره|silver/,'#c0c8d2']];for(const [re,c] of map)if(re.test(s))return c;let h=0;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))>>>0;return `hsl(${h%360} 48% 70%)`}
+function sizeClass(v){const n=Number(digits(v));return n&&n<39?'s-small':n&&n<43?'s-mid':'s-large'}
+$('inventoryList').addEventListener('click',async e=>{const exp=e.target.closest('button[data-expand-model]');if(exp){const model=exp.dataset.expandModel;const set=window.__queliExpandedModels||(window.__queliExpandedModels=new Set());if(set.has(model))set.delete(model);else set.add(model);render();return}const rq=e.target.closest('button[data-request]');if(rq){const barcode=rq.dataset.request;rq.disabled=true;rq.textContent='در حال ارسال…';try{const r=await fetch('/api/requests',{method:'POST',cache:'no-store',headers:{'Content-Type':'application/json'},body:JSON.stringify({barcode,qty:1})});const d=await r.json();if(!r.ok)throw new Error(d.error||'ثبت درخواست ناموفق بود');toast('درخواست برای مدیر ارسال شد.');loadSellerActivity()}catch(err){toast(err.message||'ارسال درخواست ناموفق بود.')}finally{rq.disabled=false;rq.textContent='📨 ثبت درخواست این کفش برای مدیر'}return}const b=e.target.closest('button[data-act]');if(!b)return;const p=find(b.dataset.code);if(!p)return;if(b.dataset.act==='plus'){p.qty++;persist();toast('یک جفت اضافه شد.')}if(b.dataset.act==='minus'){if(p.qty<=0){toast('موجودی صفر است.');return}p.qty--;persist();toast('یک جفت از موجودی کم شد.')}if(b.dataset.act==='out'){if(window.__SHOE_ROLE__!=='admin'){toast('فقط مدیر می‌تواند خروج مستقیم ثبت کند.');return}const qtyInput=document.querySelector(`input[data-out-qty="${CSS.escape(String(p.barcode||''))}"]`);const qty=Number(digits(qtyInput?.value||'1'));if(!Number.isInteger(qty)||qty<1){toast('تعداد باید حداقل یک جفت کامل باشد.');return}if(qty>(Number(p.qty)||0)){toast(`موجودی کافی نیست؛ فقط ${fa(p.qty)} جفت موجود است.`);return}if(!confirm(`${fa(qty)} جفت از «${p.model||'مدل نامشخص'} · ${p.color||'—'} · سایز ${p.size||'—'}» خارج شود؟`))return;b.disabled=true;try{const r=await fetch('/api/outgoing/manual',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({barcode:String(p.barcode||''),qty})});const d=await r.json();if(!r.ok)throw new Error(d.error||'ثبت خروج ناموفق بود.');await refreshServerState();toast(`خروج ${fa(qty)} جفت ثبت شد.`);beep()}catch(err){toast(err.message||'ثبت خروج ناموفق بود.')}finally{b.disabled=false}}if(b.dataset.act==='edit'){$('pBarcode').value=p.barcode;$('pModel').value=p.model;$('pColor').value=p.color;$('pSize').value=p.size;$('pQty').value=p.qty;switchTab('manage')}});
+$('searchInput').addEventListener('input',()=>{inventoryLimit=100;render(true)});$('modelFilter').addEventListener('change',()=>{inventoryLimit=100;render(false)});$('colorFilter').addEventListener('change',()=>{inventoryLimit=100;render(false)});$('sizeFilter').addEventListener('change',()=>{inventoryLimit=100;render(false)});
+$('exportCsv').addEventListener('click',()=>{const rows=[['بارکد','مدل','رنگ','سایز','تعداد جفت'],...products.map(p=>[p.barcode,p.model,p.color,p.size,p.qty])];const csv='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='shoe-inventory.csv';a.click();URL.revokeObjectURL(url);toast('فایل خروجی آماده شد.')});
+function csvDownload(filename,rows){const csv='\\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\\r\\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function selectedOutgoingDate(){return $('outgoingDateFilter')?.value||$('adminOutgoingDateFilter')?.value||''}function dateKeyTehran(value){try{return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tehran',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(Number(value)))}catch(e){return ''}}function filteredOutgoing(search=''){const date=selectedOutgoingDate();const q=String(search||'').trim().toLocaleLowerCase('fa-IR');return outgoing.filter(x=>{if(x.exchangeType==='clothing'||(date&&dateKeyTehran(x.date)!==date))return false;if(!q)return true;const hay=[x.model,x.color,x.size,x.sellerName,x.seller,x.managerName,x.managerUsername,x.description,x.barcode,x.returnedModel,x.replacementModel].filter(v=>v!==undefined&&v!==null).join(' ').toLocaleLowerCase('fa-IR');return hay.includes(q)})}function renderOutgoing(){const list=$('outgoingList');if(!list)return;const visibleOutgoing=filteredOutgoing();list.innerHTML=visibleOutgoing.length?visibleOutgoing.map(x=>`<article class="item"><div class="itemtop"><div><div class="itemname">${esc(x.model||'مدل نامشخص')}</div><div class="sub meta-line"><span>رنگ</span><i class="color-chip" style="background:${colorHex(x.color)}"></i><span>${esc(x.color||'—')}</span><span class="size-chip ${sizeClass(x.size)}">سایز ${esc(x.size||'—')}</span></div><div class="sub">تاریخ: ${esc(new Date(x.date).toLocaleString('fa-IR'))}</div></div><div class="qty" style="background:#fff1f0;color:#b42318">−${fa(x.qty||1)} جفت</div></div>${!x.seller?`<div class="request-actions"><button class="btn danger" data-undo-outgoing="${esc(x.date)}" data-barcode="${esc(x.barcode||'')}">↩ لغو خروج و برگشت به موجودی</button></div>`:''}</article>`).join(''):'<div class="empty">هنوز خروجی ثبت نشده است. از بخش اسکن، حالت قرمز «خروج کالا» را انتخاب کن.</div>'}
+function renderTransfers(){const host=$('transferList');if(!host)return;const rows=outgoing.filter(x=>x.exchangeType==='shoe'||x.exchangeType==='clothing');host.innerHTML=rows.length?rows.map(x=>`<article class="request-card"><div class="itemname">مشتری برگرداند: <b>${esc(x.returnedModel||'ثبت نشده')}</b></div><div class="sub">مشتری به‌جایش برد: <b>${esc(x.exchangeType==='clothing'?(x.replacementModel||x.model||'لباس'):(x.replacementModel||x.model||'—'))}</b>${x.exchangeType==='shoe'?' · '+esc(x.replacementColor||x.color||'—')+' · سایز '+esc(x.replacementSize||x.size||'—'):''}</div><div class="sub">نوع تعویض: ${x.exchangeType==='clothing'?'لباس':'کفش'} · ${x.managerName?'ثبت توسط مدیر: '+esc(x.managerName)+(x.managerUsername?' (@'+esc(x.managerUsername)+')':'')+' · ':''}زمان: ${esc(new Date(Number(x.date)).toLocaleString('fa-IR',{timeZone:'Asia/Tehran'}))}</div>${x.description?`<div class="sub">توضیحات: ${esc(x.description)}</div>`:''}</article>`).join(''):'<div class="empty">هنوز تعویضی ثبت نشده است.</div>'}
+$('exportOutgoing').addEventListener('click',()=>{const rows=[['تاریخ خروج','بارکد','مدل','رنگ','سایز','تعداد جفت'],...outgoing.map(x=>[new Date(x.date).toLocaleString('fa-IR'),x.barcode,x.model,x.color,x.size,x.qty])];csvDownload('shoe-outgoing-history.csv',rows);toast('فایل سوابق خروج آماده شد.')});
+$('exportAll').addEventListener('click',()=>{const rows=[['نوع رکورد','تاریخ','بارکد','مدل','رنگ','سایز','تعداد جفت'],...products.map(x=>['موجودی فعلی','',x.barcode,x.model,x.color,x.size,x.qty]),...outgoing.map(x=>['خروج',new Date(x.date).toLocaleString('fa-IR'),x.barcode,x.model,x.color,x.size,x.qty])];csvDownload('shoe-inventory-and-outgoing.csv',rows);toast('فایل موجودی و خروج‌ها آماده شد.')});
+let pendingExcelRows=[];
+ function renderExcelPreview(data){pendingExcelRows=data.rows||[];$('excelPreviewRows').innerHTML=pendingExcelRows.map(x=>`<tr><td>${esc(x.model||'—')}</td><td>${esc(x.color||'—')}</td><td>${esc(x.size||'—')}</td><td>${fa(x.qty||0)} جفت</td><td>${fa(x.current_qty||0)} جفت</td><td><b>${fa((Number(x.current_qty)||0)+(Number(x.qty)||0))} جفت</b></td></tr>`).join('');$('excelPreviewSummary').textContent=`${fa(data.unique_count||pendingExcelRows.length)} ترکیب کفش شناسایی شد؛ ${fa(data.added_pairs||0)} جفت از فایل خوانده شد. موجودی فعلی حفظ می‌شود.`;$('excelPreviewWrap').classList.remove('hidden');}
+ $('uploadExcelBtn').addEventListener('click',async()=>{const input=$('excelInventoryFile'),file=input.files&&input.files[0],feedback=$('excelUploadFeedback');if(!file){toast('اول فایل اکسل را انتخاب کن.');return}const fd=new FormData();fd.append('file',file);fd.append('preview_only','1');const btn=$('uploadExcelBtn');btn.disabled=true;btn.textContent='در حال خواندن فایل…';feedback.classList.remove('hidden');feedback.textContent='فایل در حال خواندن است؛ هنوز هیچ تغییری در موجودی ایجاد نشده.';try{const res=await fetch('/admin/import-inventory',{method:'POST',body:fd});const data=await res.json();if(!res.ok||!data.ok)throw new Error(data.error||'خواندن فایل ناموفق بود');renderExcelPreview(data);feedback.textContent='پیش‌نمایش آماده است. تا زمانی که «درسته، اضافه کن به موجودی» را نزنی، موجودی تغییر نمی‌کند.';toast('پیش‌نمایش فایل آماده شد.')}catch(e){feedback.textContent=e.message||'خواندن فایل انجام نشد.';toast(feedback.textContent)}finally{btn.disabled=false;btn.textContent='👁️ خواندن فایل و پیش‌نمایش موجودی'}});
+ $('confirmExcelImportBtn').addEventListener('click',async()=>{if(!pendingExcelRows.length){toast('اول فایل را بخوان تا پیش‌نمایش آماده شود.');return}if(!confirm(`تأیید می‌کنی ${fa(pendingExcelRows.length)} ترکیب و مجموع ${fa(pendingExcelRows.reduce((s,x)=>s+(Number(x.qty)||0),0))} جفت به موجودی اضافه شود؟`))return;const btn=$('confirmExcelImportBtn'),feedback=$('excelUploadFeedback');btn.disabled=true;btn.textContent='در حال ثبت موجودی…';try{const res=await fetch('/admin/confirm-import-inventory',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({rows:pendingExcelRows})});const data=await res.json();if(!res.ok||!data.ok)throw new Error(data.error||'ثبت موجودی ناموفق بود');products=data.products;localStorage.setItem(KEY,JSON.stringify(products));localStorage.setItem(IMPORTKEY,'1');window.__SHOE_SERVER_STATE__={...(window.__SHOE_SERVER_STATE__||{}),products:products.map(p=>({...p}))};render();feedback.textContent=`انجام شد؛ ${fa(data.new_count||0)} ترکیب جدید اضافه شد و ${fa(data.merged_count||0)} ترکیب موجود افزایش یافت. مجموعاً ${fa(data.added_pairs||0)} جفت اضافه شد. اطلاعات قبلی حفظ شد.`;toast('موجودی فایل با موفقیت اضافه شد.');pendingExcelRows=[];$('excelPreviewWrap').classList.add('hidden');$('excelInventoryFile').value='';switchTab('search')}catch(e){feedback.textContent=e.message||'ثبت موجودی انجام نشد.';toast(feedback.textContent)}finally{btn.disabled=false;btn.textContent='✅ درسته، اضافه کن به موجودی'}});
+ $('cancelExcelPreviewBtn').addEventListener('click',()=>{pendingExcelRows=[];$('excelPreviewWrap').classList.add('hidden');$('excelUploadFeedback').textContent='پیش‌نمایش لغو شد؛ موجودی تغییری نکرد.';});
+
+function setSelectOptions(el, values, placeholder, previous=''){el.innerHTML=`<option value="">${esc(placeholder)}</option>`+values.map(v=>`<option value="${attr(v)}">${esc(v)}</option>`).join('');if(values.includes(previous))el.value=previous;}
+function renderReturnStockOptions(){const modelEl=$('returnStockModel'),colorEl=$('returnStockColor'),sizeEl=$('returnStockSize');if(!modelEl||!colorEl||!sizeEl)return;const oldModel=modelEl.value,oldColor=colorEl.value,oldSize=sizeEl.value,q=normalizeSearch($('returnStockModelSearch').value);const models=[...new Set(products.map(p=>String(p.model||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'fa'));const filtered=models.filter(m=>!q||normalizeSearch(m).includes(q));setSelectOptions(modelEl,filtered,filtered.length?'انتخاب مدل':'مدلی پیدا نشد',oldModel);const rows=products.filter(p=>String(p.model||'').trim()===modelEl.value);setSelectOptions(colorEl,[...new Set(rows.map(p=>String(p.color||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'fa')),'انتخاب رنگ',oldColor);const sizes=[...new Set(rows.filter(p=>String(p.color||'').trim()===colorEl.value).map(p=>String(p.size||'').trim()).filter(Boolean))].sort((a,b)=>Number(digits(a))-Number(digits(b)));setSelectOptions(sizeEl,sizes,'انتخاب سایز',oldSize);}
+$('returnStockModelSearch').addEventListener('input',()=>{const before=$('returnStockModel').value;renderReturnStockOptions();if(![...$('returnStockModel').options].some(o=>o.value===before))renderReturnStockOptionsForSelection();});
+$('returnStockModel').addEventListener('change',()=>{renderReturnStockOptionsForSelection();});
+function renderReturnStockOptionsForSelection(){const model=$('returnStockModel').value,color=$('returnStockColor').value;const rows=products.filter(p=>String(p.model||'').trim()===model&&String(p.color||'').trim()===color);setSelectOptions($('returnStockColor'),[...new Set(products.filter(p=>String(p.model||'').trim()===model).map(p=>String(p.color||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'fa')),'انتخاب رنگ',$('returnStockColor').value);setSelectOptions($('returnStockSize'),[...new Set(rows.map(p=>String(p.size||'').trim()).filter(Boolean))].sort((a,b)=>Number(digits(a))-Number(digits(b))),'انتخاب سایز');}
+$('returnStockColor').addEventListener('change',renderReturnStockOptionsForSelection);
+$('returnStockCustomColorToggle').addEventListener('change',e=>$('returnStockCustomColor').classList.toggle('hidden',!e.target.checked));
+$('returnStockCustomSizeToggle').addEventListener('change',e=>$('returnStockCustomSize').classList.toggle('hidden',!e.target.checked));
+$('returnStockNewModelToggle').addEventListener('change',e=>{const on=e.target.checked;$('returnStockNewModel').classList.toggle('hidden',!on);$('returnStockModelSearch').disabled=on;$('returnStockModel').disabled=on;if(on){$('returnStockModel').value='';$('returnStockModelSearch').value='';}});
+$('addReturnStockBtn').addEventListener('click',()=>{if($('singleStockReason').value==='exchange'){if($('singleExchangeType').value==='clothing'){toast('برای تعویض با لباس، از دکمه ثبت تعویض با لباس استفاده کن.');return}const model=($('returnStockNewModelToggle').checked?$('returnStockNewModel').value:$('returnStockModel').value).trim();const color=($('returnStockCustomColorToggle').checked?$('returnStockCustomColor').value:$('returnStockColor').value).trim();const sizeRaw=($('returnStockCustomSizeToggle').checked?$('returnStockCustomSize').value:$('returnStockSize').value).trim();const size=digits(sizeRaw)||sizeRaw;const qty=Math.max(1,parseInt(digits($('returnStockQty').value),10)||1);const feedback=$('returnStockFeedback');feedback.classList.remove('hidden');const returnedDesc=$('exchangeReturnedDesc').value.trim();if(!returnedDesc){feedback.textContent='مدل کفشی را که مشتری برگردانده وارد کن.';return}if(!model||!color||!size){feedback.textContent='برای تعویض با کفش، مدل، رنگ و سایز کفش جایگزین را انتخاب کن.';return}const p=products.find(x=>String(x.model||'').trim()===model&&String(x.color||'').trim()===color&&String(x.size||'').trim()===size);if(!p||Number(p.qty||0)<qty){feedback.textContent='موجودی کافی برای کفش جایگزین وجود ندارد.';return}if(!confirm(`مشتری «${returnedDesc}» را برگردانده و ${qty} جفت ${model} · ${color} · سایز ${size} می‌برد. ثبت شود؟`))return;p.qty=Number(p.qty)-qty;for(let i=0;i<qty;i++)outgoing.unshift({date:Date.now()+i,barcode:p.barcode||'',model:p.model||'',color:p.color||'',size:p.size||'',qty:1,managerName:window.__SHOE_NAME__||window.__SHOE_USERNAME__||'مدیر',managerUsername:window.__SHOE_USERNAME__||'',description:'مشتری کفش را با کفش تعویض کرد',exchangeType:'shoe',returnedModel:returnedDesc,returnedColor:'',returnedSize:'',replacementModel:p.model||model,replacementColor:p.color||color,replacementSize:p.size||size});persist();persistOutgoing();renderTransfers();renderAdminOutgoing();feedback.textContent=`تعویض ثبت شد: مشتری «${returnedDesc}» برگرداند و ${model} · ${color} · سایز ${size} برد.`;toast('تعویض در نقل و انتقالات ثبت شد.');return} if(window.__SHOE_ROLE__!=='admin'){toast('فقط مدیر می‌تواند موجودی اضافه کند.');return}const useNewModel=$('returnStockNewModelToggle').checked;const model=(useNewModel?$('returnStockNewModel').value:$('returnStockModel').value).trim();const color=($('returnStockCustomColorToggle').checked?$('returnStockCustomColor').value:$('returnStockColor').value).trim();const sizeRaw=($('returnStockCustomSizeToggle').checked?$('returnStockCustomSize').value:$('returnStockSize').value).trim();const size=digits(sizeRaw)||sizeRaw;const qty=Math.max(0,parseInt(digits($('returnStockQty').value),10)||0);const feedback=$('returnStockFeedback');feedback.classList.remove('hidden');if(!model||!color||!size){feedback.textContent='مدل، رنگ و سایز را انتخاب یا وارد کن.';return}if(qty<1){feedback.textContent='تعداد جفت باید حداقل ۱ باشد.';return}let p=products.find(x=>String(x.model||'').trim()===model&&String(x.color||'').trim()===color&&String(x.size||'').trim()===size);if(p){p.qty=(Number(p.qty)||0)+qty;}else{p={barcode:'ITEM-'+Date.now()+'-'+Math.random().toString(36).slice(2,7),model,color,size,qty,created:Date.now()};products.push(p)}if($('singleStockReason').value==='defective')p.defective=true;persist();$('returnStockModelSearch').value='';$('returnStockCustomColorToggle').checked=false;$('returnStockCustomSizeToggle').checked=false;$('returnStockNewModelToggle').checked=false;$('returnStockCustomColor').value='';$('returnStockCustomSize').value='';$('returnStockNewModel').value='';$('returnStockCustomColor').classList.add('hidden');$('returnStockCustomSize').classList.add('hidden');$('returnStockNewModel').classList.add('hidden');$('returnStockModelSearch').disabled=false;$('returnStockModel').disabled=false;renderReturnStockOptions();feedback.textContent=`${model} · ${color} · سایز ${size}: ${fa(qty)} جفت به موجودی اضافه شد. موجودی این ترکیب: ${fa(p.qty)} جفت.`;toast('موجودی کفش اضافه شد.');$('returnStockQty').value='1';});
+
+function refreshSingleStockMode(){const reason=$('singleStockReason').value, exchange=reason==='exchange', clothing=exchange&&$('singleExchangeType').value==='clothing';$('singleExchangeTypeWrap').classList.toggle('hidden',!exchange);$('singleClothingConfirmWrap').classList.toggle('hidden',!clothing);$('singleStockAddWrap').classList.remove('hidden');$('addReturnStockBtn').classList.toggle('hidden',clothing);$('returnStockQty').value='1';const h=document.querySelector('#singleStockAddWrap .hint');if(h)h.textContent=clothing?'مدل، رنگ و سایز کفشی را انتخاب کن که مشتری با لباس تعویض کرده؛ در این حالت موجودی کفش تغییر نمی‌کند.':'برای کالاهای برگشتی یا مشکل‌دار از این قسمت استفاده کن.'}
+$('singleStockReason').addEventListener('change',refreshSingleStockMode);$('singleExchangeType').addEventListener('change',refreshSingleStockMode);
+$('confirmClothingExchange').addEventListener('click',()=>{const f=$('singleClothingFeedback');f.classList.remove('hidden');if(!$('singleClothingConfirm').checked){f.textContent='برای ثبت، تیک «تعویض با لباس انجام شد» را بزن.';return}const returnedDesc=$('exchangeReturnedDesc').value.trim(),receivedDesc=$('exchangeReceivedDesc').value.trim();if(!returnedDesc||!receivedDesc){f.textContent='هم کفش برگشتی مشتری و هم چیزی که به‌جایش برده را وارد کن.';return}const now=Date.now();outgoing.unshift({date:now,barcode:'',model:receivedDesc,color:'',size:'',qty:0,exchangeType:'clothing',returnedModel:returnedDesc,returnedColor:'',returnedSize:'',replacementModel:receivedDesc,managerName:window.__SHOE_NAME__||window.__SHOE_USERNAME__||'مدیر',managerUsername:window.__SHOE_USERNAME__||'',description:`مشتری «${returnedDesc}» را برگرداند و «${receivedDesc}» برد؛ موجودی کفش تغییر نکرد`});persistOutgoing();renderTransfers();renderAdminOutgoing();f.textContent=`تعویض ثبت شد: مشتری «${returnedDesc}» برگرداند و «${receivedDesc}» برد.`;toast('تعویض با لباس در نقل و انتقالات ثبت شد.');$('singleClothingConfirm').checked=false});$('singleExchangeType').addEventListener('change',()=>{$('exchangeReceivedWrap').classList.toggle('hidden',$('singleExchangeType').value!=='clothing')});refreshSingleStockMode();
+// زیر‌بخش‌های اکسل: کالاهای برگشتی در یک قسمت و کفش‌های جدید در قسمت جداگانه
+function setSingleStockTab(tab){const isNew=tab==='new';$('singleStockReturnsPane').classList.toggle('hidden',isNew);$('singleStockNewPane').classList.toggle('hidden',!isNew);document.querySelectorAll('[data-single-stock-tab]').forEach(b=>b.classList.toggle('active',b.dataset.singleStockTab===tab));if(isNew)renderNewStockOptions();}
+document.querySelectorAll('[data-single-stock-tab]').forEach(b=>b.addEventListener('click',()=>setSingleStockTab(b.dataset.singleStockTab)));
+function renderNewStockOptions(){const m=$('newStockModel'),c=$('newStockColor'),z=$('newStockSize');if(!m||!c||!z)return;const oldM=m.value,oldC=c.value,oldZ=z.value,q=normalizeSearch($('newStockModelSearch').value);const models=[...new Set(products.map(p=>String(p.model||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'fa'));const filtered=models.filter(x=>!q||normalizeSearch(x).includes(q));setSelectOptions(m,filtered,filtered.length?'انتخاب مدل':'مدلی پیدا نشد',oldM);const rows=products.filter(p=>String(p.model||'').trim()===m.value);setSelectOptions(c,[...new Set(rows.map(p=>String(p.color||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'fa')),'انتخاب رنگ',oldC);setSelectOptions(z,[...new Set(rows.filter(p=>String(p.color||'').trim()===c.value).map(p=>String(p.size||'').trim()).filter(Boolean))].sort((a,b)=>Number(digits(a))-Number(digits(b))),'انتخاب سایز',oldZ);}
+function refreshNewStockVariants(){const model=$('newStockModel').value,color=$('newStockColor').value;const colors=[...new Set(products.filter(p=>String(p.model||'').trim()===model).map(p=>String(p.color||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'fa'));setSelectOptions($('newStockColor'),colors,'انتخاب رنگ',$('newStockColor').value);const sizes=[...new Set(products.filter(p=>String(p.model||'').trim()===model&&String(p.color||'').trim()===color).map(p=>String(p.size||'').trim()).filter(Boolean))].sort((a,b)=>Number(digits(a))-Number(digits(b)));setSelectOptions($('newStockSize'),sizes,'انتخاب سایز',$('newStockSize').value);}
+$('newStockModelSearch').addEventListener('input',renderNewStockOptions);$('newStockModel').addEventListener('change',refreshNewStockVariants);$('newStockColor').addEventListener('change',refreshNewStockVariants);
+$('newStockNewModelToggle').addEventListener('change',e=>{const on=e.target.checked;$('newStockNewModel').classList.toggle('hidden',!on);$('newStockModelSearch').disabled=on;$('newStockModel').disabled=on;if(on){$('newStockModelSearch').value='';$('newStockModel').value='';}});
+$('newStockCustomColorToggle').addEventListener('change',e=>$('newStockCustomColor').classList.toggle('hidden',!e.target.checked));$('newStockCustomSizeToggle').addEventListener('change',e=>$('newStockCustomSize').classList.toggle('hidden',!e.target.checked));
+$('addNewStockBtn').addEventListener('click',()=>{if(window.__SHOE_ROLE__!=='admin'){toast('فقط مدیر می‌تواند موجودی اضافه کند.');return}const model=($('newStockNewModelToggle').checked?$('newStockNewModel').value:$('newStockModel').value).trim();const color=($('newStockCustomColorToggle').checked?$('newStockCustomColor').value:$('newStockColor').value).trim();const sizeRaw=($('newStockCustomSizeToggle').checked?$('newStockCustomSize').value:$('newStockSize').value).trim();const size=digits(sizeRaw)||sizeRaw;const qty=Math.max(0,parseInt(digits($('newStockQty').value),10)||0);const f=$('newStockFeedback');f.classList.remove('hidden');if(!model||!color||!size){f.textContent='مدل، رنگ و سایز را انتخاب یا وارد کن.';return}if(qty<1){f.textContent='تعداد جفت باید حداقل ۱ باشد.';return}let item=products.find(p=>String(p.model||'').trim()===model&&String(p.color||'').trim()===color&&String(p.size||'').trim()===size);if(item)item.qty=(Number(item.qty)||0)+qty;else{item={barcode:'ITEM-'+Date.now()+'-'+Math.random().toString(36).slice(2,7),model,color,size,qty,created:Date.now()};products.push(item)}persist();f.textContent=`${model} · ${color} · سایز ${size}: ${fa(qty)} جفت ثبت شد. موجودی فعلی: ${fa(item.qty)} جفت.`;toast('کفش جدید به موجودی اضافه شد.');$('newStockQty').value='1';$('newStockModelSearch').value='';$('newStockCustomColorToggle').checked=false;$('newStockCustomSizeToggle').checked=false;$('newStockNewModelToggle').checked=false;$('newStockCustomColor').value='';$('newStockCustomSize').value='';$('newStockNewModel').value='';$('newStockCustomColor').classList.add('hidden');$('newStockCustomSize').classList.add('hidden');$('newStockNewModel').classList.add('hidden');$('newStockModelSearch').disabled=false;$('newStockModel').disabled=false;renderNewStockOptions();});
+$('clearAll').addEventListener('click',()=>{if(confirm('همه موجودی‌ها و مشخصات کالا از این مرورگر پاک شود؟ بهتر است اول خروجی بگیری.')){products=[];persist();toast('همه اطلاعات پاک شد.')}});
+
+function normalizeOcrText(s){
+  return String(s||'').replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d))
+    .replace(/[|]/g,'/').replace(/[؛;]/g,' ').replace(/[ـ]/g,'').replace(/[\t\r]+/g,' ').replace(/ +/g,' ').trim();
+}
+function parseLabelText(raw){
+  const t=normalizeOcrText(raw);
+  // Detect shoe sizes anywhere, even when OCR misses the slash or the word "سایز".
+  const sizeText=t.replace(/(?<!\d)([34])\s+([0-9])(?=\D|$)/g,'$1$2');
+  const matches=[...sizeText.matchAll(/(?:^|\D)(3[5-9]|4[0-8])(?=\D|$)/g)];
+  const size=matches.length?matches[matches.length-1][1]:'';
+  let nameText=t;
+  if(size){ const idx=t.lastIndexOf(size); nameText=(t.slice(0,idx)+t.slice(idx+size.length)).replace(/(?:سایز|size|\/|\\|:|-)+/gi,' ').trim(); }
+  const lines=nameText.split(/\n+/).map(x=>x.trim()).filter(Boolean)
+    .filter(x=>!(/\d{5,}/.test(x))&&!/(قیمت|تومان|ریال|price|barcode|بارکد)/i.test(x));
+  let nameLine=(lines.sort((a,b)=>b.replace(/\s/g,'').length-a.replace(/\s/g,'').length)[0]||nameText).trim();
+  nameLine=nameLine.replace(/^\d+\s*/,'').replace(/[\/\\:|,-]+\s*$/,'').trim();
+  const generic=['بزرگپا','کتونی','کفش','مردانه','مرد','زنانه','زن','بچگانه','اسپرت','سایز','size'];
+  const tokens=nameLine.split(/\s+/).filter(Boolean);
+  const kept=tokens.filter(w=>!generic.some(g=>w.toLowerCase()===g.toLowerCase()));
+  let color='',model='';
+  if(kept.length>=2){color=kept[kept.length-1];model=kept.slice(0,-1).join(' ')}
+  else {model=kept.join(' ')}
+  return {model:model.trim(),color:color.trim(),size,text:t};
+}
+function makeOcrVariants(video){
+  const variants=[];
+  const vw=video.videoWidth, vh=video.videoHeight;
+  // Read ONLY the red guide rectangle, ignoring surrounding box/text.
+  const sx=Math.round(vw*.12), sy=Math.round(vh*.22);
+  const sw=Math.round(vw*.76), sh=Math.round(vh*.56);
+  const scale=Math.min(4,2200/sw);
+  const c=document.createElement('canvas'); c.width=Math.round(sw*scale); c.height=Math.round(sh*scale);
+  const x=c.getContext('2d',{willReadFrequently:true});
+  x.imageSmoothingEnabled=true; x.imageSmoothingQuality='high';
+  x.drawImage(video,sx,sy,sw,sh,0,0,c.width,c.height);
+  const src=x.getImageData(0,0,c.width,c.height), d=src.data, gray=[];
+  for(let i=0;i<d.length;i+=4) gray.push(.299*d[i]+.587*d[i+1]+.114*d[i+2]);
+  const sorted=[...gray].sort((a,b)=>a-b); const threshold=sorted[Math.floor(sorted.length*.48)]||128;
+  for(let i=0,j=0;i<d.length;i+=4,j++){
+    const g=gray[j]; const contrast=Math.max(0,Math.min(255,(g-128)*1.9+128));
+    d[i]=d[i+1]=d[i+2]=contrast; d[i+3]=255;
+  }
+  x.putImageData(src,0,0); variants.push({canvas:c,label:'فقط کادر قرمز'});
+  const bw=document.createElement('canvas'); bw.width=c.width; bw.height=c.height;
+  const bx=bw.getContext('2d',{willReadFrequently:true});
+  const im=bx.createImageData(bw.width,bw.height), bd=im.data;
+  for(let i=0,j=0;i<bd.length;i+=4,j++){
+    const v=gray[j]>threshold?255:0; bd[i]=bd[i+1]=bd[i+2]=v; bd[i+3]=255;
+  }
+  bx.putImageData(im,0,0); variants.push({canvas:bw,label:'کادر قرمز سیاه‌وسفید'});
+  return variants;
+}
+function ocrQuality(parsed){
+  return (parsed.size?100:0)+(parsed.model?Math.min(45,parsed.model.replace(/\s/g,'').length*4):0)+(parsed.color?8:0)+(parsed.text?Math.min(15,parsed.text.length/8):0);
+}
+async function readLabelFromVideo(){
+  if(ocrBusy) return null;
+  const video=$('video');
+  if(!window.Tesseract || !video.videoWidth) {
+    $('ocrFeedback').classList.remove('hidden');
+    $('ocrFeedback').textContent='موتور خواندن متن در دسترس نیست یا دوربین روشن نیست. اتصال اینترنت و مجوز دوربین را بررسی کن.';
+    return null;
+  }
+  ocrBusy=true; $('readLabelBtn').disabled=true;
+  $('ocrFeedback').classList.remove('hidden');
+  $('ocrFeedback').textContent='در حال تحلیل هوشمند لیبل؛ چند تصویر و روش خواندن به‌صورت خودکار امتحان می‌شود…';
+  try{
+    const variants=makeOcrVariants(video); let best=null, bestScore=-1; let attempts=0;
+    for(const v of variants){
+      attempts++;
+      $('ocrFeedback').textContent=`تحلیل خودکار لیبل… مرحله ${fa(attempts)} از ${fa(variants.length)}`;
+      // Try both block-text and sparse-text layouts for each processed image.
+      for(const psm of ['6','11']){
+        const result=await Tesseract.recognize(v.canvas,'fas+eng',{
+          logger:m=>{if(m.status==='recognizing text'&&m.progress!=null)$('ocrFeedback').textContent=`خواندن نوشته‌ها… مرحله ${fa(attempts)} از ${fa(variants.length)} · ${Math.round(m.progress*100)}٪`;},
+          tessedit_pageseg_mode:psm,
+          preserve_interword_spaces:'1'
+        });
+        const parsed=parseLabelText(result.data.text||'');
+        const score=ocrQuality(parsed);
+        if(score>bestScore){best=parsed;bestScore=score;}
+        if(parsed.size && parsed.model && parsed.model.replace(/\s/g,'').length>=4 && parsed.color) break;
+      }
+      if(best && best.size && best.model && best.color) break;
+    }
+    if(!best) best={model:'',color:'',size:'',text:''};
+    best.text=(best.text||'').trim();
+    $('ocrFeedback').textContent='متن تشخیص‌داده‌شده: '+(best.text||'متن قابل‌خواندن پیدا نشد')+(best.model?' | مدل پیشنهادی: '+best.model:'')+(best.size?' | سایز: '+best.size:'')+' — اگر نتیجه ناقص است، یک‌بار لیبل را نزدیک‌تر و ثابت‌تر بگیر.';
+    return best;
+  }catch(e){
+    $('ocrFeedback').textContent='خواندن لیبل ناموفق بود. اینترنت را بررسی کن و لیبل را نزدیک، صاف و بدون انعکاس نور بگیر.';
+    return null;
+  }finally{ocrBusy=false;$('readLabelBtn').disabled=false;}
+}
+async function addByLabel(parsed){
+  if(!parsed || !parsed.model || !parsed.size){
+    $('ocrFeedback').classList.remove('hidden');
+    $('ocrFeedback').textContent='متن خوانده‌شده: '+(parsed?.text||'متن خالی بود')+' — سایز باید بین ۳۵ تا ۴۸ باشد؛ لیبل را نزدیک‌تر بگیر و دوباره تلاش کن.';
+    return;
+  }
+  const model=parsed.model.trim(), color=(parsed.color||'').trim(), size=String(parsed.size).trim();
+  let p=products.find(x=>(x.model||'').trim()===model && (x.color||'').trim()===color && String(x.size||'').trim()===size);
+  if(p){
+    p.qty=(Number(p.qty)||0)+1;
+  }else{
+    p={barcode:'LABEL-'+Date.now(),model,color,size,qty:1,created:Date.now(),labelOnly:true};
+    products.push(p);
+  }
+  persist();beep();if(navigator.vibrate)navigator.vibrate(65);
+  $('scanFeedback').classList.remove('hidden');
+  $('scanFeedback').textContent=`ثبت شد: مدل ${model} · رنگ ${color||'تشخیص داده نشد'} · سایز ${size} — موجودی: ${fa(p.qty)} جفت`;
+  $('ocrFeedback').classList.remove('hidden');
+  $('ocrFeedback').textContent='متن تشخیص‌داده‌شده: '+(parsed.text||'')+' | اگر مدل/رنگ اشتباه است، از بخش ثبت دستی اصلاحش کن.';
+}
+$('readLabelBtn').addEventListener('click',async()=>{
+  if(!$('video').videoWidth){toast('اول دوربین را روشن کن و لیبل را داخل کادر بگیر.');return}
+  const parsed=await readLabelFromVideo();
+  if(parsed)addByLabel(parsed);
+});
+
+
+async function scanLoop(){if(!stream||!detector)return;try{const v=$('video');if(v.readyState>=2){const codes=await detector.detect(v),now=Date.now();if(codes.length){const code=String(codes[0].rawValue||'').trim();if(code){lastDetectedAt=now;if(code!==armedCode){armedCode=code;lastCode=code;lastAt=now;addScannedBarcode(code)}}}else if(now-lastDetectedAt>1000){armedCode=''}}}catch(e){}if(stream)raf=requestAnimationFrame(scanLoop)}
+$('startCamera').addEventListener('click',async()=>{
+ const status=$('scanStatus');
+ try{
+   status.classList.remove('off');
+   status.textContent='در حال درخواست دسترسی دوربین…';
+   if(!window.isSecureContext)throw new Error('INSECURE_CONTEXT');
+   if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)throw new Error('NO_CAMERA_API');
+   // Request the rear camera first, then fall back to any available camera.
+   try{
+     stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}},audio:false});
+   }catch(firstError){
+     stream=await navigator.mediaDevices.getUserMedia({video:true,audio:false});
+   }
+   const video=$('video');
+   video.srcObject=stream;video.classList.remove('hidden');$('labelGuide').classList.remove('hidden');
+   video.setAttribute('playsinline','');video.muted=true;
+   await new Promise((resolve,reject)=>{
+     if(video.readyState>=2){resolve();return}
+     video.onloadedmetadata=()=>resolve();
+     setTimeout(()=>reject(new Error('VIDEO_TIMEOUT')),8000);
+   });
+   await video.play();
+   status.textContent='دوربین روشن است؛ لیبل را کامل داخل کادر بگیر و دکمه خواندن لیبل را بزن.';
+   toast('دوربین آماده است.');
+ }catch(e){
+   if(stream){stream.getTracks().forEach(t=>t.stop());stream=null}
+   const msg=e&&e.message==='INSECURE_CONTEXT'?'سایت باید با HTTPS باز شود؛ آدرس http دوربین را فعال نمی‌کند.'
+    :e&&e.message==='NO_CAMERA_API'?'این صفحه به API دوربین دسترسی ندارد؛ با Safari یا Chrome به‌روز و HTTPS باز کن.'
+    :e&&e.name==='NotAllowedError'?'مجوز دوربین رد شده است؛ از تنظیمات مرورگر اجازه Camera را فعال کن.'
+    :e&&e.name==='NotFoundError'?'دوربینی روی دستگاه پیدا نشد.'
+    :e&&e.name==='NotReadableError'?'دوربین مشغول برنامه دیگری است؛ برنامه دوربین را ببند و دوباره تلاش کن.'
+    :'دوربین باز نشد. HTTPS، مجوز دوربین و تنظیمات مرورگر را بررسی کن.';
+   status.textContent=msg;
+   $('ocrFeedback').classList.remove('hidden');$('ocrFeedback').textContent=msg;
+   toast(msg);
+ }
+});
+function stop(){if(raf)cancelAnimationFrame(raf);raf=null;try{if(zxingControls&&zxingControls.stop)zxingControls.stop()}catch(e){}zxingControls=null;zxingReader=null;if(stream){stream.getTracks().forEach(t=>t.stop());stream=null}if($('video').srcObject){try{$('video').srcObject.getTracks().forEach(t=>t.stop())}catch(e){}$('video').srcObject=null}$('video').classList.add('hidden');$('labelGuide').classList.add('hidden');$('scanStatus').classList.add('off');$('scanStatus').textContent='دوربین متوقف شد.';armedCode='';} $('stopCamera').addEventListener('click',stop);window.addEventListener('pagehide',stop);
+
+async function loadSellerActivity(){if(window.__SHOE_ROLE__!=='seller')return;try{const rr=await fetch('/api/requests',{cache:'no-store'});const rd=await rr.json();const pendingHost=$('sellerRequestsPending'),soldHost=$('sellerRequestsSold');const requests=(rd.requests||[]).filter(x=>x.status!=='kept');const pending=requests.filter(x=>x.status==='pending'),sold=requests.filter(x=>x.status==='sold');const norm=v=>String(v||'').trim().toLocaleLowerCase();const relatedSizes=(x)=>products.filter(p=>norm(p.model)===norm(x.model)&&norm(p.color)===norm(x.color)&&String(p.barcode||'')!==String(x.barcode||'')&&(Number(p.qty)||0)>0&&!requests.some(r=>String(r.barcode||'')===String(p.barcode||''))).sort((a,b)=>Number(a.size)-Number(b.size)||String(a.size).localeCompare(String(b.size)));const card=x=>{const sizes=x.status==='pending'?relatedSizes(x):[];return `<article class="item"><div class="itemname">${esc(x.model)} · ${esc(x.color||'—')} · سایز ${esc(x.size||'—')}</div><div class="sub">تعداد: ${fa(x.qty)} جفت · ${esc(x.created_at_display||x.created_at||'')}</div><div style="margin-top:7px"><span class="status-pill ${x.status==='sold'?'status-sold':''}">${x.status==='pending'?'در انتظار بررسی':'خروج ثبت شد'}</span>${x.request_type?` <span class="request-type-tag">${esc(x.request_type)}</span>`:''}</div>${x.status==='pending'?`<div class="request-actions request-type-actions"><button type="button" class="btn ${x.request_type==='چپ'?'':'secondary'}" data-request-type="چپ" data-id="${x.id}">چپ</button><button type="button" class="btn ${x.request_type==='جفت'?'':'secondary'}" data-request-type="جفت" data-id="${x.id}">جفت</button><button type="button" class="btn ${x.request_type==='صندوق'?'':'secondary'}" data-request-type="صندوق" data-id="${x.id}">صندوق</button></div>`:''}${sizes.length?`<div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--line)"><div class="sub" style="margin-bottom:7px;font-weight:700">سایزهای دیگر همین رنگ:</div><div style="display:flex;flex-wrap:wrap;gap:7px">${sizes.map(p=>`<button type="button" class="btn secondary" data-quick-request="${esc(p.barcode)}" style="padding:7px 10px;font-size:12px">سایز ${esc(p.size)}</button>`).join('')}</div></div>`:''}</article>`};if(pendingHost)pendingHost.innerHTML=pending.map(card).join('')||'<div class="empty">درخواستی در انتظار بررسی نیست.</div>';if(soldHost)soldHost.innerHTML=sold.map(card).join('')||'<div class="empty">صندوق خالی است.</div>';const self=await fetch('/api/my-sales');if(self.ok){const data=await self.json();$('sellerSoldCount').textContent=fa(data.pairs_sold||0)+' جفت';const todayList=$('sellerTodaySalesList');if(todayList)todayList.innerHTML=(data.today_sales||[]).map(x=>`<div class="seller-sales-row"><b>${esc(x.model||'—')} · ${esc(x.color||'—')} · سایز ${esc(x.size||'—')}</b><div class="sub">${fa(x.qty||0)} جفت · ${esc(x.sold_at_display||'')}</div></div>`).join('')||'<div class="empty">امروز فروشی ثبت نشده است.</div>'}}catch(e){console.error('loadSellerActivity failed',e)}}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-seller-request-view]');if(!b)return;document.querySelectorAll('[data-seller-request-view]').forEach(x=>x.classList.toggle('active',x===b));$('sellerRequestsPending').classList.toggle('hidden',b.dataset.sellerRequestView!=='pending');$('sellerRequestsSold').classList.toggle('hidden',b.dataset.sellerRequestView!=='sold')});
+async function loadAdminSales(){if(window.__SHOE_ROLE__!=='admin')return;try{const r=await fetch('/api/sales');if(!r.ok)return;const d=await r.json();$('sellerSalesReport').innerHTML=(d.sellers||[]).map(s=>`<article class="request-card"><div class="itemtop"><div><div class="itemname">${esc(s.display_name)}</div><div class="sub">نام کاربری: ${esc(s.username)}</div></div><div class="qty">${fa(s.pairs_sold)} جفت فروخته</div></div></article>`).join('')||'<div class="empty">هنوز فروش ثبت نشده است.</div>'}catch(e){}}
+function iranRequestTime(value){if(!value)return '—';const raw=String(value).trim();const iso=/Z$|[+-]\d\d:\d\d$/.test(raw)?raw:raw.replace(' ','T')+'Z';const date=new Date(iso);return Number.isNaN(date.getTime())?raw:date.toLocaleString('fa-IR',{timeZone:'Asia/Tehran',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false})}
+let knownPendingRequestIds=null;let requestSoundEnabled=false;async function renderAdminRequests(){if(window.__SHOE_ROLE__!=='admin')return;try{const r=await fetch('/api/requests',{cache:'no-store'});if(!r.ok)throw new Error('دریافت درخواست‌ها ناموفق بود: '+r.status);const d=await r.json();const pendingIds=new Set((d.requests||[]).filter(x=>x.status==='pending').map(x=>Number(x.id)));if(knownPendingRequestIds===null){knownPendingRequestIds=pendingIds}else{const fresh=[...pendingIds].filter(id=>!knownPendingRequestIds.has(id));if(fresh.length&&requestSoundEnabled){for(let i=0;i<Math.min(fresh.length,3);i++)beep();if($('requestSoundStatus'))$('requestSoundStatus').textContent='صدای اعلان فعال است؛ درخواست جدید که برسد صدا پخش می‌شود.';if('Notification'in window&&Notification.permission==='granted')new Notification('درخواست جدید کفش',{body:`${fresh.length} درخواست جدید برای بررسی مدیر ثبت شد.`})}knownPendingRequestIds=pendingIds;}const host=$('adminRequestList');const requests=(d.requests||[]).filter(x=>x.status!=='sold');host.innerHTML=requests.map(x=>`<article class="request-card" style="${x.manager_checked?'opacity:.72;border:1px solid #16a34a':''}"><div class="itemtop"><div><div class="itemname">${esc(x.model)} · ${esc(x.color||'—')} · سایز ${esc(x.size||'—')}</div><div class="sub">فروشنده: <b>${esc(x.seller_name||'')}</b> (@${esc(x.seller_username||'')})</div><div class="sub">زمان درخواست فروشنده: ${esc(x.created_at_display||x.created_at||'—')}</div>${x.request_type?`<div style="margin-top:8px"><span class="request-type-tag">${esc(x.request_type)}</span></div>`:''}</div><span class="status-pill ${x.status==='kept'?'status-kept':''}">${x.status==='pending'?'در انتظار بررسی':x.status==='sold'?'خروج ثبت شد':'در انبار مانده'}</span></div><label style="display:flex;align-items:center;gap:8px;margin:12px 0;font-weight:600"><input type="checkbox" data-check-request="${x.id}" ${x.manager_checked?'checked':''} style="width:18px;height:18px"> کفش تحویل داده شد / یادآوری مدیر</label>${x.status==='pending'?`<div class="request-actions"><button class="btn" data-resolve="sold" data-id="${x.id}" style="background:#15803d">✓ خروج از انبار / فروخته شد</button><button class="btn secondary" data-resolve="kept" data-id="${x.id}">↩ مانده در انبار</button></div>`:''}</article>`).join('')||'<div class="empty">درخواستِ در انتظار بررسی یا مانده در انبار وجود ندارد؛ خروج‌های ثبت‌شده در منوی «خروجی‌های انبار» هستند.</div>';await loadAdminSales();renderAdminOutgoing()}catch(e){console.error('renderAdminRequests failed:',e)}}
+function renderAdminOutgoing(){const host=$('adminOutgoingList');if(!host||window.__SHOE_ROLE__!=='admin')return;const visibleOutgoing=filteredOutgoing($('adminOutgoingSearch')?.value||'');host.innerHTML=visibleOutgoing.length?visibleOutgoing.slice(0,100).map(x=>`<article class="request-card"><div class="itemtop"><div><div class="itemname">${esc(x.model||'مدل نامشخص')} · ${esc(x.color||'—')} · سایز ${esc(x.size||'—')}</div><div class="sub">${x.sellerName?'فروشنده: '+esc(x.sellerName)+' · ':''}${x.managerName?'خروج توسط مدیر: '+esc(x.managerName)+(x.managerUsername?' (@'+esc(x.managerUsername)+')':''):''}${x.exchangeType==='shoe'?' · مشتری برگرداند: '+esc(x.returnedModel||'—')+' · مشتری برد: '+esc(x.replacementModel||x.model||'—'):''}${x.description?' · توضیحات: '+esc(x.description):''}</div><div class="sub">زمان خروج: ${esc(new Date(Number(x.date)).toLocaleString('fa-IR',{timeZone:'Asia/Tehran'}))}</div></div><span class="status-pill status-sold">خروج ثبت‌شده</span></div><div class="request-actions">${x.request_id?`<button class="btn danger" data-cancel-sale="${esc(x.request_id)}">↩ برگشت به موجودی</button>`:`<button class="btn danger" data-undo-outgoing="${esc(x.date)}" data-barcode="${esc(x.barcode||'')}">↩ برگشت به موجودی</button>`}</div></article>`).join(''):'<div class="empty">خروج ثبت‌شده‌ای وجود ندارد.</div>'}
+document.addEventListener('click',async e=>{const quick=e.target.closest('button[data-quick-request]');if(quick){if(window.__SHOE_ROLE__!=='seller')return;const barcode=quick.dataset.quickRequest;quick.disabled=true;const old=quick.textContent;quick.textContent='در حال ارسال…';try{const r=await fetch('/api/requests',{method:'POST',cache:'no-store',headers:{'Content-Type':'application/json'},body:JSON.stringify({barcode,qty:1})});const d=await r.json();if(!r.ok)throw new Error(d.error||'ثبت درخواست ناموفق بود');toast('درخواست سایز جدید برای مدیر ارسال شد.');await loadSellerActivity()}catch(err){toast(err.message||'ارسال درخواست ناموفق بود')}finally{quick.disabled=false;quick.textContent=old}return}const typeBtn=e.target.closest('button[data-request-type]');if(typeBtn){if(window.__SHOE_ROLE__!=='seller')return;typeBtn.disabled=true;try{const r=await fetch('/api/requests/'+typeBtn.dataset.id+'/type',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({request_type:typeBtn.dataset.requestType})});const d=await r.json();if(!r.ok)throw new Error(d.error||'ثبت نوع درخواست ناموفق بود');toast('نوع درخواست «'+d.request_type+'» ثبت شد و مدیر آن را می‌بیند.');await loadSellerActivity()}catch(err){toast(err.message||'ثبت نوع درخواست ناموفق بود')}finally{typeBtn.disabled=false}return}const subtab=e.target.closest('[data-request-subtab]');if(subtab){if(window.__SHOE_ROLE__!=='admin')return;switchRequestSubtab(subtab.dataset.requestSubtab);return}const clearKept=e.target.closest('#clearKeptRequests');if(clearKept){if(window.__SHOE_ROLE__!=='admin')return;if(!confirm('همه درخواست‌های «مانده در انبار» پاک شوند؟ موجودی انبار و خروجی‌ها تغییر نمی‌کنند.'))return;clearKept.disabled=true;try{const r=await fetch('/api/requests/delete-kept',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({})});const d=await r.json();if(!r.ok)throw new Error(d.error||'پاک‌کردن درخواست‌ها ناموفق بود');toast(fa(d.deleted||0)+' درخواست مانده در انبار پاک شد.');await renderAdminRequests()}catch(err){toast(err.message||'خطا در پاک‌کردن درخواست‌ها')}finally{clearKept.disabled=false}return}const undo=e.target.closest('button[data-undo-outgoing]');if(undo){if(!confirm('این خروج لغو شود و تعداد کفش به موجودی برگردد؟'))return;const ix=outgoing.findIndex(x=>String(x.date)===String(undo.dataset.undoOutgoing)&&String(x.barcode||'')===String(undo.dataset.barcode||''));if(ix<0){toast('رکورد خروج پیدا نشد؛ صفحه را تازه کن.');return}const item=outgoing[ix];const product=products.find(p=>String(p.barcode||'').trim()===String(item.barcode||'').trim());if(!product){toast('کفش متناظر در موجودی پیدا نشد؛ ابتدا کالا را بررسی کن.');return}undo.disabled=true;product.qty=(Number(product.qty)||0)+(Number(item.qty)||1);outgoing.splice(ix,1);persist();persistOutgoing();renderAdminOutgoing();toast('خروج لغو شد و کفش به موجودی برگشت.');return}const cancel=e.target.closest('button[data-cancel-sale]');if(cancel){if(!confirm('خروج این کفش لغو شود و تعداد آن به موجودی برگردد؟'))return;cancel.disabled=true;try{const r=await fetch('/api/requests/'+cancel.dataset.cancelSale+'/cancel',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({})});const d=await r.json();if(!r.ok)throw new Error(d.error||'لغو خروج ناموفق بود');toast('خروج لغو شد و کفش به موجودی برگشت.');await renderAdminRequests();await refreshServerState()}catch(err){toast(err.message||'خطا در لغو خروج')}finally{cancel.disabled=false}return}const chk=e.target.closest('input[data-check-request]');if(chk){if(window.__SHOE_ROLE__!=='admin')return;chk.disabled=true;try{const r=await fetch('/api/requests/'+chk.dataset.checkRequest+'/check',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({})});const d=await r.json();if(!r.ok)throw new Error(d.error||'ثبت وضعیت ناموفق بود');toast(d.checked?'این کفش به‌عنوان تحویل‌شده علامت خورد.':'علامت تحویل برداشته شد.');await renderAdminRequests()}catch(err){chk.checked=!chk.checked;toast(err.message||'ثبت علامت ناموفق بود')}finally{chk.disabled=false}return}const b=e.target.closest('button[data-resolve]');if(!b)return;const decision=b.dataset.resolve;const label=decision==='sold'?'خروج از انبار ثبت شود و موجودی کم شود؟':'این کفش در انبار مانده ثبت شود؟';if(!confirm(label))return;b.disabled=true;try{const r=await fetch('/api/requests/'+b.dataset.id+'/resolve',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({decision})});const d=await r.json();if(!r.ok)throw new Error(d.error||'ثبت تصمیم ناموفق بود');toast(decision==='sold'?'خروج ثبت شد و به آمار فروشنده اضافه شد.':'درخواست به‌عنوان مانده در انبار ثبت شد.');await renderAdminRequests();await refreshServerState()}catch(err){toast(err.message||'خطا در ثبت تصمیم')}finally{b.disabled=false}});
+function leagueMedal(rank){return rank===1?'🥇':rank===2?'🥈':rank===3?'🥉':String(rank)}
+async function loadSellerLeague(){
+ const list=$('sellerLeagueList');if(!list)return;
+ try{
+  const r=await fetch('/api/league');if(!r.ok)throw new Error('دریافت جدول لیگ ناموفق بود');
+  const d=await r.json(),rows=d.league||[],mine=d.mine;
+  $('leagueMyRank').textContent=mine?fa(mine.rank):(window.__SHOE_ROLE__==='admin'?'مدیر':'—');
+  $('leagueMyPairs').textContent=fa(mine?.pairs_sold||0);
+  $('leagueMySales').textContent=fa(mine?.sale_count||0);
+  const startStatus=$('leagueStartStatus');
+  if(startStatus)startStatus.textContent=d.started?('آمار لیگ از تاریخ '+(d.start_label||d.start_date)+' محاسبه می‌شود.'):'هنوز تاریخ شروع لیگ ثبت نشده؛ فعلاً آمار از کل سوابق فروش محاسبه می‌شود.';
+  const startInput=$('leagueStartDate');
+  if(startInput&&d.start_label&&!startInput.value)startInput.value=d.start_label;
+  list.innerHTML=rows.length?rows.map(s=>{
+   const rank=Number(s.rank),me=Number(s.id)===Number(mine?.id);
+   const medal=rank<=3?({1:'قهرمان لیگ',2:'نایب‌قهرمان',3:'رتبه سوم'}[rank]):'شرکت‌کننده';
+   return `<article class="league-card rank-${rank<=3?rank:0} ${me?'me':''}"><div class="league-rank">${leagueMedal(rank)}</div><div class="league-person"><div class="league-name">${esc(s.display_name)} ${me?'<span class="badge">شما</span>':''}</div><div class="league-sub">${esc(s.username)} · ${fa(s.sale_count||0)} فروش ثبت‌شده</div><span class="league-medal">${medal}</span></div><div class="league-stats"><div class="league-pairs">${fa(s.pairs_sold||0)}</div><div class="league-pairs-label">جفت فروخته‌شده</div></div></article>`;
+  }).join(''):'<div class="empty">هنوز فروش ثبت‌شده‌ای برای رتبه‌بندی وجود ندارد.</div>';
+ }catch(e){list.innerHTML='<div class="empty">بارگذاری لیگ انجام نشد؛ دوباره تلاش کن.</div>'}
+}
+$('refreshLeague')?.addEventListener('click',loadSellerLeague);
+if(window.__SHOE_ROLE__==='admin'&&$('leagueAdminControls'))$('leagueAdminControls').style.display='block';
+$('startLeagueBtn')?.addEventListener('click',async()=>{
+ if(window.__SHOE_ROLE__!=='admin'){toast('فقط مدیر می‌تواند لیگ را شروع کند.');return}
+ const field=$('leagueStartDate'),value=(field?.value||'').trim();
+ if(!value){toast('تاریخ شروع شمسی را وارد کن؛ مثال ۱۴۰۵/۰۸/۱۰');return}
+ if(!confirm('لیگ از تاریخ '+value+' شروع شود؟ آمار لیگ از این تاریخ محاسبه می‌شود؛ سوابق فروش پاک نمی‌شوند.'))return;
+ const btn=$('startLeagueBtn');btn.disabled=true;
+ try{const r=await fetch('/api/league/start',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jalali_date:value})});const d=await r.json();if(!r.ok)throw new Error(d.error||'شروع لیگ انجام نشد');toast('لیگ از '+d.start_label+' شروع شد؛ آمار قبلی در سوابق حفظ شد.');await loadSellerLeague()}
+ catch(e){toast(e.message||'خطا در شروع لیگ')}finally{btn.disabled=false}
+});
+async function refreshServerState(){try{const r=await fetch('/api/state');if(!r.ok)return;const state=await r.json();if(Array.isArray(state.products)){products=state.products;localStorage.setItem(KEY,JSON.stringify(products));window.__SHOE_SERVER_STATE__=state;render()}if(Array.isArray(state.outgoing)){outgoing=state.outgoing;localStorage.setItem(OUTKEY,JSON.stringify(outgoing));renderOutgoing();renderAdminOutgoing();renderTransfers()}}catch(e){}}
+
+const adminMenu=$('adminHamburgerMenu');$('adminHamburger')?.addEventListener('click',()=>adminMenu.classList.toggle('open'));document.addEventListener('click',e=>{if(adminMenu&&!e.target.closest('.admin-nav'))adminMenu.classList.remove('open')});document.querySelectorAll('[data-admin-menu-tab]').forEach(b=>b.addEventListener('click',()=>{adminMenu.classList.remove('open');switchTab(b.dataset.adminMenuTab)}));$('openSellersMenu')?.addEventListener('click',()=>{adminMenu.classList.remove('open');switchTab('sellers')});$('backToSellerList')?.addEventListener('click',()=>{ $('adminSellerProfileView').classList.add('hidden');$('adminSellerListView').classList.remove('hidden')});let activeAdminSellerId=null;async function loadAdminSellers(){if(window.__SHOE_ROLE__!=='admin')return;try{const r=await fetch('/api/sales',{cache:'no-store'});const d=await r.json();$('adminSellerList').innerHTML=(d.sellers||[]).map(s=>`<button type="button" class="request-card seller-list-card" data-open-seller="${s.id}"><span><b>${esc(s.display_name)}</b><span class="sub" style="display:block">@${esc(s.username)}</span></span><span class="qty">${fa(s.pairs_sold)} جفت　›</span></button>`).join('')||'<div class="empty">فروشنده‌ای ثبت نشده است.</div>'}catch(e){$('adminSellerList').innerHTML='<div class="empty">دریافت فهرست فروشنده‌ها ناموفق بود.</div>'}}async function openAdminSeller(id){activeAdminSellerId=id;$('adminSellerListView').classList.add('hidden');$('adminSellerProfileView').classList.remove('hidden');$('adminSellerTodayList').innerHTML='در حال بارگذاری…';$('adminSellerRecentSales').innerHTML='در حال بارگذاری…';try{const r=await fetch('/api/admin/sellers/'+id,{cache:'no-store'});const d=await r.json();if(!r.ok)throw new Error(d.error||'بارگذاری پروفایل ناموفق بود');$('adminSellerName').textContent=d.seller.display_name;$('adminSellerUsername').textContent='@'+d.seller.username;$('adminSellerTodayPairs').textContent=fa(d.today_pairs)+' جفت';const renderSales=(items)=>items.map(x=>`<div class="seller-sales-row"><b>${esc(x.model||'—')} · ${esc(x.color||'—')} · سایز ${esc(x.size||'—')}</b><div class="sub">${fa(x.qty||0)} جفت · ${esc(x.sold_at_display||x.sold_at||'')}</div></div>`).join('')||'<div class="empty">فروشی ثبت نشده است.</div>';$('adminSellerTodayList').innerHTML=renderSales(d.today_sales);$('adminSellerRecentSales').innerHTML=renderSales(d.recent_sales)}catch(e){$('adminSellerTodayList').textContent=e.message;$('adminSellerRecentSales').textContent=''}}document.addEventListener('click',e=>{const b=e.target.closest('[data-open-seller]');if(b)openAdminSeller(b.dataset.openSeller)});$('saveSellerPassword')?.addEventListener('click',async()=>{const pw=$('adminSellerNewPassword').value;const box=$('sellerPasswordFeedback');box.classList.remove('hidden');if(pw.length<10){box.textContent='رمز عبور باید حداقل ۱۰ کاراکتر باشد.';return}const b=$('saveSellerPassword');b.disabled=true;try{const r=await fetch('/api/admin/sellers/'+activeAdminSellerId+'/password',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pw})});const d=await r.json();if(!r.ok)throw new Error(d.error||'تغییر رمز ناموفق بود');box.textContent='رمز عبور فروشنده تغییر کرد.';$('adminSellerNewPassword').value=''}catch(e){box.textContent=e.message}finally{b.disabled=false}});
+document.body.classList.add('role-'+(window.__SHOE_ROLE__||'seller'));
+if($('profileName'))$('profileName').textContent=window.__SHOE_NAME__||'—';if($('profileUsername'))$('profileUsername').textContent=window.__SHOE_USERNAME__||'—';if($('profileRole'))$('profileRole').textContent=window.__SHOE_ROLE__==='admin'?'مدیر سیستم':'فروشنده';
+const outDate=$('outgoingDateFilter'),adminOutDate=$('adminOutgoingDateFilter');function syncOutgoingDate(value){if(outDate)outDate.value=value;if(adminOutDate)adminOutDate.value=value;renderOutgoing();renderAdminOutgoing()}outDate?.addEventListener('change',()=>syncOutgoingDate(outDate.value));adminOutDate?.addEventListener('change',()=>syncOutgoingDate(adminOutDate.value));$('clearOutgoingDateFilter')?.addEventListener('click',()=>syncOutgoingDate(''));$('clearAdminOutgoingDateFilter')?.addEventListener('click',()=>syncOutgoingDate(''));$('adminOutgoingSearch')?.addEventListener('input',()=>renderAdminOutgoing());
+render(true);renderOutgoing();renderAdminOutgoing();renderTransfers();
+if(window.__SHOE_ROLE__==='admin')switchTab('upload');else switchTab('search');
+if(!Array.isArray(window.__SHOE_SERVER_STATE__?.products)){syncSharedState()}
+if(window.__SHOE_ROLE__==='seller'){loadSellerActivity();setInterval(loadSellerActivity,2500);setInterval(refreshServerState,4000);setInterval(()=>{if(!$('tab-league').classList.contains('hidden'))loadSellerLeague()},15000)}else{setInterval(renderAdminRequests,2000);setInterval(refreshServerState,4000);setInterval(()=>{if(!$('tab-league').classList.contains('hidden'))loadSellerLeague()},15000)}
+})();
+</script>
+<script>
+(function(){
+ let deferred=null;
+ const bar=document.getElementById('pwaInstallBar'), btn=document.getElementById('pwaInstallBtn'), close=document.getElementById('pwaInstallClose'), label=document.getElementById('pwaInstallText');
+ if('serviceWorker' in navigator && location.protocol==='https:'){navigator.serviceWorker.register('/sw.js').catch(function(e){console.warn('PWA service worker:',e)});}
+ const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+ const standalone=window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone===true;
+ if(!standalone && bar){
+  if(isIOS){bar.style.display='block';label.textContent='برای نصب: اشتراک‌گذاری Safari ← Add to Home Screen';btn.textContent='راهنمای نصب';btn.onclick=function(){alert('در Safari دکمه اشتراک‌گذاری را بزن و گزینه Add to Home Screen را انتخاب کن. سپس کوئلی شاپ را از آیکون صفحه اصلی باز کن.');};}
+  else if(!localStorage.getItem('queliPwaInstallDismissed')){bar.style.display='block';}
+ }
+ window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferred=e;if(bar)bar.style.display='block';});
+ if(btn)btn.addEventListener('click',async function(){
+  if(deferred){deferred.prompt();try{await deferred.userChoice;}catch(e){}deferred=null;if(bar)bar.style.display='none';}
+  else if(!isIOS)alert('از منوی مرورگر گزینه Install app یا Add to Home Screen را انتخاب کن.');
+ });
+ if(close)close.addEventListener('click',function(){bar.style.display='none';localStorage.setItem('queliPwaInstallDismissed','1');});
+ window.addEventListener('appinstalled',function(){if(bar)bar.style.display='none';});
+})();
+</script>
+</body></html>

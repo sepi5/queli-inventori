@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#6d28d9">
+<title>ورود | کوئلی شاپ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:22px;font-family:'Vazirmatn',Tahoma,sans-serif;color:#24133f;background:radial-gradient(ellipse at 12% 10%,#c4b5fd 0,transparent 35%),radial-gradient(ellipse at 90% 88%,#e9d5ff 0,transparent 32%),linear-gradient(135deg,#f8f5ff,#eee7ff 52%,#f9f7ff);}
+.ambient{position:fixed;width:320px;height:320px;border:1px solid #7c3aed1a;border-radius:50%;right:-110px;top:-110px;box-shadow:0 0 0 35px #7c3aed08,0 0 0 70px #7c3aed05;pointer-events:none}.ambient.two{width:260px;height:260px;right:auto;top:auto;left:-110px;bottom:-110px}
+.layout{width:min(100%,410px);position:relative}.brand{text-align:center;margin-bottom:24px}.logo{width:72px;height:72px;display:grid;place-items:center;margin:0 auto 12px;border-radius:23px;background:linear-gradient(145deg,#a78bfa,#6d28d9);box-shadow:0 12px 30px #6d28d944;font-size:35px;border:1px solid #ffffffa8}.brand h1{font-size:27px;font-weight:800;margin:0;letter-spacing:-.5px;color:#4c1d95}
+.card{background:#ffffffed;color:#2e1b4b;padding:30px;border-radius:24px;border:1px solid #ffffff;box-shadow:0 24px 70px #4c1d9518;backdrop-filter:blur(14px)}.card-head{margin-bottom:20px}.card-head h2{font-size:20px;font-weight:700;margin:0;text-align:center;color:#3b176d}
+label{display:block;font-size:13px;font-weight:600;color:#4c3670;margin:17px 0 8px}input{width:100%;padding:14px;border:1px solid #e2d8f5;border-radius:13px;background:#fcfaff;font:inherit;font-size:14px;outline:none;transition:.18s;color:#2e1b4b}input::placeholder{color:#a49ab7}input:focus{border-color:#8b5cf6;box-shadow:0 0 0 4px #8b5cf61c;background:#fff}button{width:100%;margin-top:23px;padding:14px;border:0;border-radius:13px;background:linear-gradient(110deg,#6d28d9,#8b5cf6);color:#fff;font:inherit;font-weight:700;cursor:pointer;box-shadow:0 9px 20px #6d28d932;transition:transform .15s,filter .15s}button:hover{filter:brightness(1.05);transform:translateY(-1px)}.err{background:#fff1f2;color:#be123c;padding:11px 12px;border-radius:10px;font-size:13px;margin:0 0 12px;border:1px solid #fecdd3}
+@media(max-width:420px){.card{padding:24px}.brand h1{font-size:24px}}
+</style>
+</head>
+<body><div class="ambient"></div><div class="ambient two"></div><main class="layout"><div class="brand"><div class="logo">👟</div><h1>کوئلی شاپ</h1></div><section class="card"><div class="card-head"><h2>ورود</h2></div>{% if error %}<div class="err">{{error}}</div>{% endif %}<form method="post"><label for="username">نام کاربری</label><input id="username" name="username" autocomplete="username" placeholder="نام کاربری" required autofocus><label for="password">رمز عبور</label><input id="password" name="password" type="password" autocomplete="current-password" placeholder="رمز عبور" required><button type="submit">ورود</button></form></section></main></body>
+</html>
